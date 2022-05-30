@@ -56,7 +56,6 @@ export default {
     const result = await getRecommend();
     this.sliders = result.sliders;
     this.albums = result.albums;
-    console.log(result);
   },
 };
 </script>
