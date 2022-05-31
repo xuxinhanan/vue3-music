@@ -15,10 +15,15 @@ export default {
       type: Boolean,
       default: true,
     },
+    probeType: {
+      type: Number,
+      default: 0,
+    },
   },
-  setup(props) {
+  emits: ["scroll"],
+  setup(props, { emit }) {
     const rootRef = ref(null);
-    const scroll = useScroll(rootRef, props);
+    const scroll = useScroll(rootRef, props, emit);
 
     return {
       rootRef,

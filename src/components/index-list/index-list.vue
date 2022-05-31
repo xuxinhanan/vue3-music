@@ -1,6 +1,6 @@
 <template>
-  <scroll class="index-list">
-    <ul>
+  <scroll class="index-list" :probeType="3" @scroll="onScroll">
+    <ul ref="groupRef">
       <li v-for="group in data" :key="group.title" class="group">
         <h2 class="title">{{ group.title }}</h2>
         <ul>
@@ -11,11 +11,15 @@
         </ul>
       </li>
     </ul>
+    <div class="fixed">
+      <div class="fixed-title">{{ fixedTitle }}</div>
+    </div>
   </scroll>
 </template>
 
 <script>
 import Scroll from "@/components/base/scroll/scroll.vue";
+import useFixed from "./use-fixed";
 
 export default {
   name: "index-list",
@@ -29,6 +33,15 @@ export default {
         return [];
       },
     },
+  },
+  setup(props) {
+    const { groupRef, onScroll, fixedTitle } = useFixed(props);
+
+    return {
+      groupRef,
+      onScroll,
+      fixedTitle,
+    };
   },
 };
 </script>
@@ -46,7 +59,7 @@ export default {
       /* 行内元素垂直居中 */
       height: 30px;
       line-height: 30px;
-      padding-left: 30px;
+      padding-left: 20px;
       font-size: $font-size-small;
       color: $color-text-l;
       background: $color-highlight-background;
@@ -68,6 +81,21 @@ export default {
         color: $color-text-l;
         font-size: $font-size-medium;
       }
+    }
+  }
+  .fixed {
+    /* 绝对定位，原点是父容器的左上角 */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    .fixed-title {
+      height: 30px;
+      line-height: 30px;
+      padding-left: 20px;
+      font-size: $font-size-small;
+      color: $color-text-l;
+      background: $color-highlight-background;
     }
   }
 }
