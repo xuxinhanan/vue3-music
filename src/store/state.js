@@ -7,6 +7,7 @@ const state = {
   playMode: PLAY_MODE.sqeuence, // 播放模式
   currentIndex: 0, // 当前播放
   fullScreen: false, // 全屏
+  favoriteList: [],
 };
 
 export default state;

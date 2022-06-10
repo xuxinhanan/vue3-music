@@ -14,7 +14,7 @@
       <div class="bottom">
         <div class="operators">
           <div class="icon i-left">
-            <i class="icon-sequence"></i>
+            <i @click="changeMode" :class="modeIcon"></i>
           </div>
           <div class="icon i-left" :class="disableCls">
             <i @click="prev" class="icon-prev"></i>
@@ -26,31 +26,49 @@
             <i @click="next" class="icon-next"></i>
           </div>
           <div class="icon i-right">
-            <i class="icon-not-favorite"></i>
+            <i
+              @click="toggleFavorite(currentSong)"
+              :class="favoriteIconStyle(currentSong)"
+            ></i>
           </div>
         </div>
       </div>
     </div>
-    <audio ref="audioRef" @pause="pause" @canplay="ready"></audio>
+    <audio
+      ref="audioRef"
+      @pause="pause"
+      @canplay="ready"
+      @error="error"
+    ></audio>
   </div>
 </template>
 
 <script>
 import { useStore } from "vuex";
 import { computed, watch, ref } from "vue";
+import useMode from "./use-mode";
+import useFavorite from "./use-favorite";
 
 export default {
   // 首先要获取 currentSong, fullScreen 数据以正确渲染
   name: "player",
   setup() {
+    // data
     const audioRef = ref(null);
     const songReady = ref(false);
 
+    // vuex data
     const store = useStore();
     const fullScreen = computed(() => store.state.fullScreen);
     const currentSong = computed(() => store.getters.currentSong);
     const playing = computed(() => store.state.playing);
     const currentIndex = computed(() => store.state.currentIndex);
+
+    // hooks
+    const { modeIcon, changeMode } = useMode();
+    const { favoriteIconStyle, toggleFavorite } = useFavorite();
+
+    // computed
     const playlist = computed(() => store.state.playlist);
 
     const playIcon = computed(() => {
@@ -61,6 +79,7 @@ export default {
       return songReady.value ? "" : "disable";
     });
 
+    // watch
     watch(currentSong, (newSong) => {
       if (!newSong.id || !newSong.url) {
         return;
@@ -79,6 +98,7 @@ export default {
       newPlaying ? audioEl.play() : audioEl.pause();
     });
 
+    // methods
     function goBack() {
       store.commit("setFullScreen", false);
     }
@@ -141,6 +161,11 @@ export default {
       songReady.value = true;
     }
 
+    // 防止一首歌出现了问题也不能切换的情况
+    function error() {
+      songReady.value = true;
+    }
+
     return {
       audioRef,
       fullScreen,
@@ -153,6 +178,13 @@ export default {
       prev,
       next,
       ready,
+      error,
+      // mode
+      modeIcon,
+      changeMode,
+      // favorite
+      favoriteIconStyle,
+      toggleFavorite,
     };
   },
 };
