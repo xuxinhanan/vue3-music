@@ -68,6 +68,7 @@ export default {
       const progress = this.$refs.progress.clientWidth / barWidth;
       this.$emit("progress-changed", progress);
     },
+    onclick(e) {},
   },
 };
 </script>

@@ -125,21 +125,6 @@ const observer = new IntersectionObserver((changes) => {
 images.forEach(observer.observe(image));
 ~~~
 
-## 3.better-scroll刷新后才能滑动
-
-近期在写一个Vue移动端项目时 使用了better-scroll插件
-但是页面初始化以后滑动事件失效，需要从新刷新页面才能启动功能，
-这个问题困扰了我将近一天时间，在感觉解决无望时就真机测试了下 发现并没出现问题，遂又找了几个机型进行测试，发现并没有问题，
-然后我又去better-scroll官网看了下他的demo 也会出现同样的问题！！ 合着只是新版谷歌与better-scroll自身的兼容问题，并不影响项目的正常运转，只是在谷歌进行移动端测试时才会出现罢了 …
-
-
-
-
-
-
-
-
-
 
 
 
@@ -150,37 +135,19 @@ images.forEach(observer.observe(image));
 
 # 歌手页
 
-## 收获
-
-1. 垂直居中：
-
-+ 设置line-height 等于height（行内元素垂直居中）
-+ 利用绝对定位，先将元素的左上角通过top:50%定位到垂直方向中间位置，然后通过transform:translateY(-50%)将元素偏移到中间
-+ 父容器设置为弹性盒子display:flex ，并且指定侧轴对齐方式align-items: center
 
 
-
-2. 水平居中：
-
-+ ⾏内元素水平居中: text-align: center
-
-  
-
-3. 绝对定位：相对父容器的位置
-
-
-
-3. css里的&符号
+1. css里的&符号
 
 ![image-20220601105653095](C:\Users\64554\AppData\Roaming\Typora\typora-user-images\image-20220601105653095.png)
 
 
 
-4. **所有以 “data-” 开头的特性均被保留供程序员使用。它们可在 `dataset` 属性中使用。**
+2. **所有以 “data-” 开头的特性均被保留供程序员使用。它们可在 `dataset` 属性中使用。**
 
    例如，如果一个 `elem` 有一个名为 `"data-about"` 的特性，那么可以通过 `elem.dataset.about` 取到它。
 
-5. 固定定位：就是相对浏览器窗口进行定位。无论页面如何滚动，这个盒子显示的位置不变。常用来设置在导航栏下方的元素。
+3. 固定定位：就是相对浏览器窗口进行定位。无论页面如何滚动，这个盒子显示的位置不变。常用来设置在导航栏下方的元素。
 
 ​	
 
@@ -285,9 +252,9 @@ const fixedTitle = computed(() => {
 
 优化：向上顶的效果
 
+![动画2](C:\Users\64554\Desktop\vue3-music\动画\动画2.gif)
 
-
-区间底![动画2](C:\Users\64554\Desktop\vue3-music\动画\动画2.gif)部（即下一个区间的顶部)距离容器顶部的距离，如果这个距离小于固定标题层的高度，那么就让固定标题栏向上偏移
+区间底部（即下一个区间的顶部)距离容器顶部的距离，如果这个距离小于固定标题层的高度，那么就让固定标题栏向上偏移
 
 ~~~js
 const fixedStyle = computed(() => {
@@ -318,7 +285,7 @@ const fixedStyle = computed(() => {
 
 # 歌手详情页
 
-## 收获
+
 
 1. **CSS 技巧**，通过设置 height: 0; padding-top:xxx 让宽高按一定比例展示（示例：歌手背景图片）
 
@@ -328,9 +295,9 @@ const fixedStyle = computed(() => {
 
 
 
-## 开发
+## 
 
-### 1.歌手页点击歌手跳转到歌手详情页同时保证歌手详情页正确渲染相应歌手
+## 1.歌手页点击歌手跳转到歌手详情页同时保证歌手详情页正确渲染相应歌手
 
 ![歌手跳转](C:\Users\64554\Desktop\vue3-music\动画\歌手跳转.gif)
 
@@ -359,7 +326,7 @@ selectSinger(singer) {
 
 
 
-### 2.歌曲列表根据歌手背景图片的大小动态计算top值，做到刚好不遮盖图片
+## 2.歌曲列表根据歌手背景图片的大小动态计算top值，做到刚好不遮盖图片
 
 ![image-20220607101439429](C:\Users\64554\Desktop\vue3-music\动画\image-20220607101439429.png)
 
@@ -387,7 +354,7 @@ computed: {
 
 
 
-### 3.歌手图片的交互效果
+## 3.歌手图片的交互效果
 
 ![图片交互](C:\Users\64554\Desktop\vue3-music\动画\图片交互.gif)
 
@@ -475,7 +442,7 @@ computed: {
 
 
 
-### 4.项目问题：歌手详情页刷新报错
+## 4.项目问题：歌手详情页刷新报错
 
 分析：通过歌手页（一级路由）跳转到歌手详情页（二级路由）时传入的 props：singer 对象的数据来渲染歌手详情页，一旦页面进行刷新后，内存中的数据都会丢失，并且没有经过路由跳转，不知道点击的是哪个歌手，就不能去请求对应的歌曲数据。
 
@@ -493,7 +460,7 @@ computed: {
 
 
 
-### 5.进入退出歌曲详情页时的过渡效果
+## 5.进入退出歌曲详情页时的过渡效果
 
 ![过渡效果](C:\Users\64554\Desktop\vue3-music\动画\过渡效果.gif)
 
@@ -562,9 +529,9 @@ computed: {
 
 
 
-## 开发
+## 
 
-### 1.点击歌手播放歌曲逻辑
+## 1.点击歌手播放歌曲逻辑
 
 ![播放歌曲](C:\Users\64554\Desktop\vue3-music\动画\播放歌曲.gif)
 
@@ -598,9 +565,9 @@ selectItem({ song, index }) {
 
 
 
-### 2.歌曲播放页
+## 2.歌曲播放页
 
-#### 播放与暂停
+### 播放与暂停
 
 暂停与继续分别是两个不同的 icon，对其注册点击事件，当点击后修改对应播放状态，然后由数据驱动即可。
 
@@ -625,7 +592,7 @@ watch(playing, (newPlaying) => {
 
 
 
-#### 前进与后退
+### 前进与后退
 
 仍然是监听点击事件的思路。比如点击了后退按钮，那么currentIndex--，currentIndex变化了那么相应的 currentSong 也会响应式发生变化。由于歌曲的播放由watch currentSong 实现，当currentSong 变化时，会触发相应的回调切换歌曲。
 
@@ -666,7 +633,7 @@ bug: DOMException: The play() request was interrupted by a new load request
 
 
 
-#### 随机播放
+### 随机播放
 
 
 
@@ -698,7 +665,7 @@ random() {
 
 
 
-#### 切换播放模式
+### 切换播放模式
 
 播放模式可以看成是增强功能，因此可以封装到hooks里（上面的功能属于基本功能）。
 
@@ -763,6 +730,109 @@ export function changeMode({ commit, state, getters }, mode) {
   commit("setPlayMode", mode);
 }
 ~~~
+
+
+
+### 歌曲收藏
+
+![歌曲收藏](C:\Users\64554\Desktop\vue3-music\动画\歌曲收藏.gif)
+
+
+
+保存一个 favorite song 数组，用来记录收藏歌曲。显然这个数组全局vuex中需要一份，并且应该本地保存一份。当点击喜欢按钮后，触发 favorite 状态的变更。
+
+同时需要注意，刷新页面之后 vuex 中内容消失，为了正确显示，应该动态获取本地的数据。
+
+
+
+### 进度条
+
+首先我们可以从<audio>获得当前播放的时间，于是我们可以根据这个数据动态的计算出进度条的偏移量。（进度条实际上由一个长条形块和圆形块组成）
+
+进度条两边的播放时间也很容易通过当前播放时间和歌曲总时长数据计算出来。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### cd唱片旋转
+
+![唱片旋转](C:\Users\64554\Desktop\vue3-music\动画\唱片旋转.gif)
+
+首先给图片设置旋转样式，并通过播放状态来控制图片旋转的动态样式。
+
+此时会发现暂停时，图片回到初始角度。
+
+这个问题怎么解决呢？
+
+暂停播放时记录<img>旋转的角度，然后同步外层<div>的角度。这样的话即便图片回到初始角度，因为外层<div>的角度偏移到暂停时<img>的角度，使得视觉上图片停在该角度了。
+
+但是实际开发又发现，暂停播放图片虽然不会回到原点，但会返回一段角度。
+
+经过分析发现，因为外层<div>已经偏移了一段角度了，然后此时图片是相对外层<div>进行偏移的。因此最终外层的角度应该是原本的偏移角度加上图片再次偏移的角度。
+
+
+
+```JS
+const store = useStore();
+const playing = computed(() => store.state.playing);
+// 根据播放状态给图片动态样式
+const cdCls = computed(() => {
+  return playing.value ? "playing" : "";
+});
+// 监听播放状态，然后同步旋转角度
+watch(playing, (newPlaying) => {
+  if (!newPlaying) {
+    syncTransform(cdRef.value, cdImageRef.value);
+  }
+});
+
+function syncTransform(wrapper, inner) {
+  // 命令式调用web api获取偏移角度
+  const wrapperTransform = getComputedStyle(wrapper).transform;
+  const innerTransform = getComputedStyle(inner).transform;
+  wrapper.style.transform =
+    wrapperTransform === "none"
+    ? innerTransform
+  : innerTransform + wrapperTransform;
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
