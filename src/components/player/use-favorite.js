@@ -6,7 +6,6 @@ import { FAVORITE_KEY } from "@/assets/js/constant";
 export default function useFavorite() {
   const store = useStore();
   const favoriteList = computed(() => store.state.favoriteList);
-  const maxLen = 100;
 
   function favoriteIconStyle(song) {
     return isFavoriteSong(song) ? "icon-favorite" : "icon-not-favorite";
@@ -18,7 +17,7 @@ export default function useFavorite() {
     if (isFavoriteSong(song)) {
       list = remove(FAVORITE_KEY, compare);
     } else {
-      list = save(song, FAVORITE_KEY, compare, maxLen);
+      list = save(song, FAVORITE_KEY, compare);
     }
     store.commit("setFavoriteList", list);
 

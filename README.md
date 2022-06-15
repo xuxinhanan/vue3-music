@@ -201,9 +201,7 @@ alert( document.documentElement.clientWidth ); // 减去滚动条宽度后的窗
 
 ## 固定标题栏实现
 
-![动画](C:\Users\64554\Desktop\动画.gif)
-
-
+![动画](C:\Users\64554\Desktop\vue3-music\动画\动画.gif)
 
 1. 求得分组的区间高度
 
@@ -287,9 +285,9 @@ const fixedTitle = computed(() => {
 
 优化：向上顶的效果
 
-![动画2](C:\Users\64554\Desktop\动画2.gif)
 
-区间底部（即下一个区间的顶部）距离容器顶部的距离，如果这个距离小于固定标题层的高度，那么就让固定标题栏向上偏移
+
+区间底![动画2](C:\Users\64554\Desktop\vue3-music\动画\动画2.gif)部（即下一个区间的顶部)距离容器顶部的距离，如果这个距离小于固定标题层的高度，那么就让固定标题栏向上偏移
 
 ~~~js
 const fixedStyle = computed(() => {
@@ -334,7 +332,7 @@ const fixedStyle = computed(() => {
 
 ### 1.歌手页点击歌手跳转到歌手详情页同时保证歌手详情页正确渲染相应歌手
 
-![歌手跳转](C:\Users\64554\Desktop\笔记\动画\歌手跳转.gif)
+![歌手跳转](C:\Users\64554\Desktop\vue3-music\动画\歌手跳转.gif)
 
 思路：给每个歌手注册点击事件，点击后通过编程式导航跳转到二级路由。因为歌手页的 dom 封装在一个子组件中，因此需要通过 emit 进行组件通信并传递当前被点击的歌手信息。
 
@@ -363,7 +361,7 @@ selectSinger(singer) {
 
 ### 2.歌曲列表根据歌手背景图片的大小动态计算top值，做到刚好不遮盖图片
 
-![image-20220607101439429](C:\Users\64554\AppData\Roaming\Typora\typora-user-images\image-20220607101439429.png)
+![image-20220607101439429](C:\Users\64554\Desktop\vue3-music\动画\image-20220607101439429.png)
 
 思路：通过 mounted 钩子拿到挂载后的图片可见高度，然后动态计算歌曲列表的 top 值。
 
@@ -391,7 +389,7 @@ computed: {
 
 ### 3.歌手图片的交互效果
 
-![图片交互](C:\Users\64554\Desktop\笔记\动画\图片交互.gif)
+![图片交互](C:\Users\64554\Desktop\vue3-music\动画\图片交互.gif)
 
 思路：
 
@@ -497,7 +495,7 @@ computed: {
 
 ### 5.进入退出歌曲详情页时的过渡效果
 
-![过渡效果](C:\Users\64554\Desktop\笔记\动画\过渡效果.gif)
+![过渡效果](C:\Users\64554\Desktop\vue3-music\动画\过渡效果.gif)
 
 通过 vue 内置的 <transition> 组件来实现。 
 
@@ -568,7 +566,7 @@ computed: {
 
 ### 1.点击歌手播放歌曲逻辑
 
-![播放歌曲](C:\Users\64554\Desktop\笔记\动画\播放歌曲.gif)
+![播放歌曲](C:\Users\64554\Desktop\vue3-music\动画\播放歌曲.gif)
 
 + 歌手详情页点击歌手后触发点击事件，执行vuex的actions，即切换全局状态如 setFullScreen、currentIndex 等，而相应的播放歌曲页面的渲染由 v-show="fullScreen" 来控制。
 
@@ -606,9 +604,9 @@ selectItem({ song, index }) {
 
 暂停与继续分别是两个不同的 icon，对其注册点击事件，当点击后修改对应播放状态，然后由数据驱动即可。
 
-![暂停播放](C:\Users\64554\Desktop\笔记\动画\暂停播放.gif)
 
 
+![暂停播放](C:\Users\64554\Desktop\vue3-music\动画\暂停播放.gif)
 
 ~~~js
 // player.vue
@@ -670,9 +668,9 @@ bug: DOMException: The play() request was interrupted by a new load request
 
 #### 随机播放
 
-![随机播放](C:\Users\64554\Desktop\笔记\动画\随机播放.gif)
 
 
+![随机播放](C:\Users\64554\Desktop\vue3-music\动画\随机播放.gif)
 
 思路：核心数据驱动，注册点击事件，触发则修改播放器数据，同时触发视图更新。
 
@@ -704,7 +702,7 @@ random() {
 
 播放模式可以看成是增强功能，因此可以封装到hooks里（上面的功能属于基本功能）。
 
-![播放模式](C:\Users\64554\Desktop\笔记\动画\播放模式.gif)
+![播放模式](C:\Users\64554\Desktop\vue3-music\动画\播放模式.gif)
 
 **播放模式的icon**
 
