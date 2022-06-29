@@ -818,17 +818,48 @@ function syncTransform(wrapper, inner) {
 
 
 
+# 推荐详情页
+
+点击推荐页的歌单，跳转到歌单详情页。这个页面与歌手详情页一致。于是我们考虑组件复用。
+
+这里只需复用组件逻辑，把逻辑抽取成一个单独的`create-detail-component.js`文件，然后将逻辑中的变量提取成为函数参数，然后根据不同的传参就可以完成功能复用了。
+
+~~~js
+// 大概结构如下
+export default function createDetailComponent(name, key, fetch) {
+  return {
+    name,
+    components: { MusicList },
+    props: {},
+    data() {},
+    computed: {},
+  };
+}
+~~~
 
 
 
 
 
+# 排行榜页面
+
+排行榜页面比较简单，写好dom结构后v-for遍历后台数据渲染即可。
 
 
 
+# 排行榜详情页
+
+与歌手详情页、推荐详情页一致。唯一不同的是，排行榜详情页有排序，并且有对应的icon。对于这些差异只需传递props扩展组件功能即可。这也是项目中基础组件开发的通用玩法。
 
 
 
+# 搜索页面
+
+给搜索框添加debounce。
+
+搜索用户体验优化：loading。
+
+边界情况：一些搜索条件没有返回结果，UI一直显示loading。
 
 
 

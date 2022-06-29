@@ -5,7 +5,7 @@
     </div>
     <h1 class="title">{{ title }}</h1>
     <div class="bg-image" :style="bgImageStyle" ref="bgImage">
-      <div class="play-btn-wrapper" :style="playBtnStyle">
+      <div class="play-btn-wrapper" :style="playBtnStyle" :rank="rank">
         <div v-show="songs.length > 0" class="play-btn" @click="random">
           <i class="icon-play"></i>
           <span class="text">随机播放全部</span>
@@ -22,7 +22,7 @@
       @scroll="onScroll"
     >
       <div class="song-list-wrapper">
-        <song-list :songs="songs" @select="selectItem"></song-list>
+        <song-list :songs="songs" @select="selectItem" :rank="rank"></song-list>
       </div>
     </scroll>
   </div>
@@ -55,6 +55,7 @@ export default {
       type: String,
       default: "抱歉，没有找到可播放的歌曲",
     },
+    rank: Boolean,
   },
   data() {
     return {

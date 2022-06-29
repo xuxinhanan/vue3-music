@@ -9,8 +9,6 @@ export default function useScroll(wrapperRef, options, emit) {
 
   onMounted(() => {
     const scrollVal = (scroll.value = new BScroll(wrapperRef.value, {
-      mouseWheel: true,
-      disableTouch: false,
       observeDOM: true,
       ...options,
     }));
@@ -24,6 +22,15 @@ export default function useScroll(wrapperRef, options, emit) {
 
   onUnmounted(() => {
     scroll.value.destroy();
+  });
+
+  onActivated(() => {
+    scroll.value.enable();
+    scroll.value.refresh();
+  });
+
+  onDeactivated(() => {
+    scroll.value.disable();
   });
 
   return scroll;

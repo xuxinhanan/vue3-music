@@ -1,9 +1,16 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Recommend from "@/views/recommend";
-import Search from "@/views/search";
-import Singer from "@/views/singer";
-import TopList from "@/views/top-list";
-import SingerDetail from "@/views/singer-detail";
+
+const Recommend = () =>
+  import("@/views/recommend" /* webpackChunkName: "recommend" */);
+const Singer = () => import("@/views/singer" /* webpackChunkName: "singer" */);
+const TopList = () =>
+  import("@/views/top-list" /* webpackChunkName: "top-list" */);
+const Search = () => import("@/views/search" /* webpackChunkName: "search" */);
+const SingerDetail = () =>
+  import("@/views/singer-detail" /* webpackChunkName: "singer-detail" */);
+const Album = () => import("@/views/album" /* webpackChunkName: "album" */);
+const TopDetail = () =>
+  import("@/views/top-detail" /* webpackChunkName: "top-detail" */);
 
 const routes = [
   {
@@ -13,6 +20,12 @@ const routes = [
   {
     path: "/recommend",
     component: Recommend,
+    children: [
+      {
+        path: ":id",
+        component: Album,
+      },
+    ],
   },
   {
     path: "/singer",
@@ -27,10 +40,22 @@ const routes = [
   {
     path: "/top-list",
     component: TopList,
+    children: [
+      {
+        path: ":id",
+        component: TopDetail,
+      },
+    ],
   },
   {
     path: "/search",
     component: Search,
+    children: [
+      {
+        path: ":id",
+        component: SingerDetail,
+      },
+    ],
   },
 ];
 

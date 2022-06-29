@@ -1,24 +1,25 @@
 <template>
-  <div class="album">
+  <div class="top-detail">
     <music-list
       :songs="songs"
+      :loading="loading"
       :title="title"
       :pic="pic"
-      :loading="loading"
+      rank
     ></music-list>
   </div>
 </template>
 
 <script>
 import createDetailComponent from "@/assets/js/create-detail-component";
-import { getAlbum } from "@/service/recommend";
-import { ALBUM_KEY } from "@/assets/js/constant";
+import { getTopDetail } from "@/service/top-list";
+import { TOP_KEY } from "@/assets/js/constant";
 
-export default createDetailComponent("album", ALBUM_KEY, getAlbum);
+export default createDetailComponent("top-detail", TOP_KEY, getTopDetail);
 </script>
 
 <style lang="scss" scoped>
-.album {
+.top-detail {
   position: fixed;
   z-index: 10;
   top: 0;
