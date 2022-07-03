@@ -5,6 +5,7 @@ import { onMounted, onUnmounted, onActivated, onDeactivated, ref } from "vue";
 BScroll.use(Slide);
 
 export default function useSlider(wrapperRef) {
+  // 接收轮播图组件实例
   const slider = ref(null);
   const currentPageIndex = ref(0);
 

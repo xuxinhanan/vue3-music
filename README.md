@@ -2,7 +2,9 @@
 
 https://v3.cn.vuejs.org/guide/custom-directive.html#%E7%AE%80%E4%BB%8B
 
-在Vue的项目中，大多数情况下，你都可以操作数据来修改视图，也就是所谓的操作DOM，但是还是避免不了偶尔要操作原生DOM。通过编写自定义指令能使我们更方便、优雅的操作DOM。
+在Vue的项目中，大多数情况下，都可以操作数据来修改视图，但是还是避免不了偶尔要操作原生DOM。通过编写自定义指令能使我们更方便、优雅的操作DOM。
+
+原理：由于 Vue.js 框架接管了 DOM 元素的创建和更新的过程，因此它可以在 DOM 元素的生命周期内注入用户的代码，于是 Vue.js 设计并提供了自定义指令，允许用户进行一些底层的 DOM 操作。
 
 实现自定义指令`v-loading`，在数据没有及时渲染到页面时将`loading`组件插入到`DOM`中：
 
@@ -14,6 +16,7 @@ import { addClass, removeClass } from "@/assets/js/dom";
 const relativeCls = "g-relative";
 
 const loadingDirective = {
+  // mounted：在绑定元素的父组件被挂载后调用。
   mounted(el, binding) {
     // 创建 loading 组件实例
     const app = createApp(loading);
@@ -32,6 +35,7 @@ const loadingDirective = {
       append(el);
     }
   },
+  // updated：在包含组件的 VNode 及其子组件的 VNode 更新后调用。
   updated(el, binding) {
     const title = binding.arg;
     if (typeof title !== "undefined") {
@@ -863,9 +867,7 @@ export default function createDetailComponent(name, key, fetch) {
 
 
 
-
-
-
+## 搜索栏上拉加载数据
 
 
 

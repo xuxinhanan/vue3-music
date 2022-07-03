@@ -23,17 +23,29 @@ export default {
       query: this.modelValue,
     };
   },
-  created() {
-    this.$watch(
-      "query",
-      debounce(300, (newQuery) => {
+  // 为什么放在这里
+  // created() {
+  //   this.$watch(
+  //     "query",
+  //     debounce(300, (newQuery) => {
+  //       this.$emit("update:modelValue", newQuery.trim());
+  //     })
+  //   );
+  //   this.$watch("modelValue", (newVal) => {
+  //     this.query = newVal;
+  //   });
+  // },
+  watch: {
+    query: {
+      handler: debounce(300, (newQuery) => {
         this.$emit("update:modelValue", newQuery.trim());
-      })
-    );
-    this.$watch("modelValue", (newVal) => {
+      }),
+    },
+    modelValue(newVal) {
       this.query = newVal;
-    });
+    },
   },
+
   methods: {
     clear() {
       this.query = "";

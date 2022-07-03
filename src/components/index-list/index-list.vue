@@ -24,7 +24,7 @@
     <div
       class="shortcut"
       @touchstart.stop.prevent="onShortcutTouchStart"
-      @touchmove.stop.prevent
+      @touchmove.stop.prevent="onShortcutTouchMove"
       @touchend.stop.prevent
     >
       <ul>
@@ -64,10 +64,12 @@ export default {
   setup(props, { emit }) {
     const { groupRef, onScroll, fixedTitle, fixedStyle, currentIndex } =
       useFixed(props);
-    const { shortcutList, scrollRef, onShortcutTouchStart } = useShortcut(
-      props,
-      groupRef
-    );
+    const {
+      shortcutList,
+      scrollRef,
+      onShortcutTouchStart,
+      onShortcutTouchMove,
+    } = useShortcut(props, groupRef);
 
     function onItemClick(item) {
       emit("select", item);
@@ -83,6 +85,7 @@ export default {
       currentIndex,
       scrollRef,
       onShortcutTouchStart,
+      onShortcutTouchMove,
     };
   },
 };
