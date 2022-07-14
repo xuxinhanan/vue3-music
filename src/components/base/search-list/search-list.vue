@@ -18,25 +18,25 @@
 
 <script>
 export default {
-  name: "search-list",
+  name: 'search-list',
   props: {
     searches: {
       type: Array,
       default() {
-        return [];
-      },
-    },
+        return []
+      }
+    }
   },
-  emits: ["select", "delete"],
+  emits: ['select', 'delete'],
   methods: {
     selectItem(item) {
-      this.$emit("select", item);
+      this.$emit('select', item)
     },
     deleteItem(item) {
-      this.$emit("delete", item);
-    },
-  },
-};
+      this.$emit('delete', item)
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>

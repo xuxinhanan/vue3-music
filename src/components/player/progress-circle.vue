@@ -30,28 +30,28 @@
 
 <script>
 export default {
-  name: "progress-circle",
+  name: 'progress-circle',
   props: {
     radius: {
       type: Number,
-      default: 100,
+      default: 100
     },
     progress: {
       type: Number,
-      default: 0,
-    },
+      default: 0
+    }
   },
   data() {
     return {
-      dashArray: Math.PI * 100,
-    };
+      dashArray: Math.PI * 100
+    }
   },
   computed: {
     dashOffset() {
-      return (1 - this.progress) * this.dashArray;
-    },
-  },
-};
+      return (1 - this.progress) * this.dashArray
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>

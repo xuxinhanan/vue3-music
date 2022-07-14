@@ -1,10 +1,10 @@
-import { createStore, createLogger } from "vuex";
-import state from "./state";
-import mutations from "./mutations";
-import * as getters from "./getters";
-import * as actions from "./actions";
+import { createStore, createLogger } from 'vuex'
+import state from './state'
+import mutations from './mutations'
+import * as getters from './getters'
+import * as actions from './actions'
 
-const debug = process.env.NODE_ENV !== "production";
+const debug = process.env.NODE_ENV !== 'production'
 
 export default createStore({
   state,
@@ -12,5 +12,5 @@ export default createStore({
   mutations,
   actions,
   strict: debug,
-  plugins: debug ? [createLogger()] : [],
-});
+  plugins: debug ? [createLogger()] : []
+})

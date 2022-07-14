@@ -41,48 +41,48 @@
 </template>
 
 <script>
-import { getRecommend } from "@/service/recommend";
-import Slider from "@/components/base/slider/slider";
-import Scroll from "@/components/base/scroll/scroll.vue";
-import storage from "good-storage";
-import { ALBUM_KEY } from "@/assets/js/constant";
+import { getRecommend } from '@/service/recommend'
+import Slider from '@/components/base/slider/slider'
+import Scroll from '@/components/base/scroll/scroll.vue'
+import storage from 'good-storage'
+import { ALBUM_KEY } from '@/assets/js/constant'
 
 export default {
-  name: "recommend",
+  name: 'recommend',
   components: {
     Slider,
-    Scroll,
+    Scroll
   },
   data() {
     return {
       sliders: [],
       albums: [],
-      selectedAlbum: null,
-    };
+      selectedAlbum: null
+    }
   },
   computed: {
     loading() {
-      return !this.sliders.length && !this.albums.length;
-    },
+      return !this.sliders.length && !this.albums.length
+    }
   },
   async created() {
-    const result = await getRecommend();
-    this.sliders = result.sliders;
-    this.albums = result.albums;
+    const result = await getRecommend()
+    this.sliders = result.sliders
+    this.albums = result.albums
   },
   methods: {
     selectItem(album) {
-      this.selectedAlbum = album;
-      this.cacheAlbum(album);
+      this.selectedAlbum = album
+      this.cacheAlbum(album)
       this.$router.push({
-        path: `/recommend/${album.id}`,
-      });
+        path: `/recommend/${album.id}`
+      })
     },
     cacheAlbum(album) {
-      storage.session.set(ALBUM_KEY, album);
-    },
-  },
-};
+      storage.session.set(ALBUM_KEY, album)
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>

@@ -19,38 +19,38 @@
 
 <script>
 export default {
-  name: "song-list",
+  name: 'song-list',
   props: {
     songs: {
       type: Array,
       default() {
-        return [];
-      },
+        return []
+      }
     },
-    rank: Boolean,
+    rank: Boolean
   },
-  emits: ["select"],
+  emits: ['select'],
   methods: {
     getDesc(song) {
-      return `${song.singer}·${song.album}`;
+      return `${song.singer}·${song.album}`
     },
     selectItem(song, index) {
-      this.$emit("select", { song, index });
+      this.$emit('select', { song, index })
     },
     getRankCls(index) {
       if (index <= 2) {
-        return `icon icon${index}`;
+        return `icon icon${index}`
       } else {
-        return "text";
+        return 'text'
       }
     },
     getRankText(index) {
       if (index > 2) {
-        return index + 1;
+        return index + 1
       }
-    },
-  },
-};
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>

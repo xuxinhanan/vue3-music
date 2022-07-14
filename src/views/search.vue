@@ -3,36 +3,7 @@
     <div class="search-input-wrapper">
       <search-input v-model="query"></search-input>
     </div>
-    <scroll class="search-content" v-show="!query">
-      <div>
-        <div class="hot-keys">
-          <h1 class="title">热门搜索</h1>
-          <ul>
-            <li
-              class="item"
-              v-for="item in hotKeys"
-              :key="item.id"
-              @click="addQuery(item.key)"
-            >
-              <span>{{ item.key }}</span>
-            </li>
-          </ul>
-        </div>
-        <div class="search-history" v-show="searchHistory.length">
-          <h1 class="title">
-            <span class="text">搜索历史</span>
-            <span class="clear" @click="showConfirm">
-              <i class="icon-clear"></i>
-            </span>
-          </h1>
-          <search-list
-            :searches="searchHistory"
-            @select="addQuery"
-            @delete="deleteSearch"
-          ></search-list>
-        </div>
-      </div>
-    </scroll>
+    <searchContent v-show="!query" @add-query="addQuery"></searchContent>
     <div class="search-result" v-show="query">
       <suggest
         :query="query"
@@ -49,63 +20,65 @@
 </template>
 
 <script>
-import SearchInput from "@/components/search/search-input.vue";
-import Suggest from "@/components/search/suggest.vue";
-import SearchList from "@/components/base/search-list/search-list.vue";
-import Scroll from "@/components/base/scroll/scroll.vue";
-import { ref, computed } from "vue";
-import { getHotKeys } from "@/service/search";
-import { useStore } from "vuex";
-import { useRouter } from "vue-router";
-import storage from "good-storage";
-import { SINGER_KEY } from "@/assets/js/constant";
-import useSearchHistory from "@/components/search/use-search-history";
+import SearchInput from '@/components/search/search-input.vue'
+import Suggest from '@/components/search/suggest.vue'
+import SearchList from '@/components/base/search-list/search-list.vue'
+import Scroll from '@/components/base/scroll/scroll.vue'
+import SearchContent from '@/components/search/search-content.vue'
+import { ref, computed } from 'vue'
+import { getHotKeys } from '@/service/search'
+import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
+import storage from 'good-storage'
+import { SINGER_KEY } from '@/assets/js/constant'
+import useSearchHistory from '@/components/search/use-search-history'
 
 export default {
-  name: "search",
+  name: 'search',
   components: {
     SearchInput,
     Suggest,
     SearchList,
     Scroll,
+    SearchContent
   },
   setup() {
-    const query = ref("");
-    const hotKeys = ref([]);
-    const selectedSinger = ref(null);
+    const query = ref('')
+    const hotKeys = ref([])
+    const selectedSinger = ref(null)
 
-    const store = useStore();
-    const searchHistory = computed(() => store.state.searchHistory);
+    const store = useStore()
+    const searchHistory = computed(() => store.state.searchHistory)
 
-    const router = useRouter();
+    const router = useRouter()
 
-    const { saveSearch, deleteSearch } = useSearchHistory();
+    const { saveSearch, deleteSearch } = useSearchHistory()
 
     getHotKeys().then((result) => {
-      hotKeys.value = result.hotKeys;
-    });
+      hotKeys.value = result?.hotKeys
+    })
 
     function addQuery(string) {
-      query.value = string;
+      query.value = string
     }
 
     function selectSong(song) {
-      saveSearch(query.value);
-      store.dispatch("addSong", song);
+      saveSearch(query.value)
+      store.dispatch('addSong', song)
     }
 
     function selectSinger(singer) {
-      saveSearch(query.value);
-      selectedSinger.value = singer;
-      cacheSinger(singer);
+      saveSearch(query.value)
+      selectedSinger.value = singer
+      cacheSinger(singer)
 
       router.push({
-        path: `/search/${singer.mid}`,
-      });
+        path: `/search/${singer.mid}`
+      })
     }
 
     function cacheSinger(singer) {
-      storage.session.set(SINGER_KEY, singer);
+      storage.session.set(SINGER_KEY, singer)
     }
 
     return {
@@ -116,10 +89,10 @@ export default {
       deleteSearch,
       addQuery,
       selectSong,
-      selectSinger,
-    };
-  },
-};
+      selectSinger
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -133,7 +106,7 @@ export default {
   .search-input-wrapper {
     margin: 20px;
   }
-  .search-content {
+  /* .search-content {
     flex: 1;
     overflow: hidden;
     .hot-keys {
@@ -174,7 +147,7 @@ export default {
         }
       }
     }
-  }
+  } */
   .search-result {
     flex: 1;
     overflow: hidden;

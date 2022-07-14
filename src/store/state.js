@@ -1,5 +1,5 @@
-import { PLAY_MODE, FAVORITE_KEY, SEARCH_KEY } from "@/assets/js/constant";
-import { load } from "@/assets/js/array-store";
+import { PLAY_MODE, FAVORITE_KEY, SEARCH_KEY } from '@/assets/js/constant'
+import { load } from '@/assets/js/array-store'
 
 const state = {
   sequenceList: [], // 顺序列表
@@ -9,7 +9,7 @@ const state = {
   currentIndex: 0, // 当前播放
   fullScreen: false, // 全屏
   favoriteList: load(FAVORITE_KEY),
-  searchHistory: load(SEARCH_KEY),
-};
+  searchHistory: load(SEARCH_KEY)
+}
 
-export default state;
+export default state

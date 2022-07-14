@@ -34,37 +34,37 @@
 </template>
 
 <script>
-import { useStore } from "vuex";
-import { computed } from "vue";
-import useCd from "./use-cd";
-import ProgressCircle from "./progress-circle.vue";
+import { useStore } from 'vuex'
+import { computed } from 'vue'
+import useCd from './use-cd'
+import ProgressCircle from './progress-circle.vue'
 
 export default {
-  name: "mini-player",
+  name: 'mini-player',
   components: {
-    ProgressCircle,
+    ProgressCircle
   },
   props: {
     progress: {
       typeof: Number,
-      default: 0,
+      default: 0
     },
-    togglePlay: Function,
+    togglePlay: Function
   },
   setup() {
-    const store = useStore();
-    const fullScreen = computed(() => store.state.fullScreen);
-    const currentSong = computed(() => store.getters.currentSong);
-    const playing = computed(() => store.state.playing);
+    const store = useStore()
+    const fullScreen = computed(() => store.state.fullScreen)
+    const currentSong = computed(() => store.getters.currentSong)
+    const playing = computed(() => store.state.playing)
 
-    const { cdCls, cdRef, cdImageRef } = useCd();
+    const { cdCls, cdRef, cdImageRef } = useCd()
 
     const miniPlayIcon = computed(() => {
-      return playing.value ? "icon-pause-mini" : "icon-play-mini";
-    });
+      return playing.value ? 'icon-pause-mini' : 'icon-play-mini'
+    })
 
     function showNormalPlayer() {
-      store.commit("setFullScreen", true);
+      store.commit('setFullScreen', true)
     }
 
     return {
@@ -75,10 +75,10 @@ export default {
       cdCls,
       cdRef,
       cdImageRef,
-      miniPlayIcon,
-    };
-  },
-};
+      miniPlayIcon
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>

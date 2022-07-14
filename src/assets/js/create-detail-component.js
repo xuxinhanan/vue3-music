@@ -1,58 +1,58 @@
-import MusicList from "@/components/music-list/music-list.vue";
-import storage from "good-storage";
-import { processSongs } from "@/service/song";
+import MusicList from '@/components/music-list/music-list.vue'
+import storage from 'good-storage'
+import { processSongs } from '@/service/song'
 
 export default function createDetailComponent(name, key, fetch) {
   return {
     name,
     components: { MusicList },
     props: {
-      data: Object,
+      data: Object
     },
     data() {
       return {
         songs: [],
-        loading: true,
-      };
+        loading: true
+      }
     },
     computed: {
       computedData() {
-        let ret = null;
-        const data = this.data;
+        let ret = null
+        const data = this.data
         if (data) {
-          ret = data;
+          ret = data
         } else {
-          const cached = storage.session.get(key);
+          const cached = storage.session.get(key)
           if (
             cached &&
-            (cached.mid || cached.id + "") === this.$route.params.id
+            (cached.mid || cached.id + '') === this.$route.params.id
           ) {
-            ret = cached;
+            ret = cached
           }
         }
-        return ret;
+        return ret
       },
       pic() {
-        const data = this.computedData;
-        return data?.pic;
+        const data = this.computedData
+        return data?.pic
       },
       title() {
-        const data = this.computedData;
-        return data && (data.name || data.title);
-      },
+        const data = this.computedData
+        return data && (data.name || data.title)
+      }
     },
     async created() {
-      const data = this.computedData;
+      const data = this.computedData
       if (!data) {
-        const path = this.$route.matched[0].path;
+        const path = this.$route.matched[0].path
         this.$router.push({
-          path,
-        });
-        return;
+          path
+        })
+        return
       }
-      const result = await fetch(data);
-      this.songs = await processSongs(result.songs);
-      this.loading = false;
-    },
-  };
+      const result = await fetch(data)
+      this.songs = await processSongs(result.songs)
+      this.loading = false
+    }
+  }
 }

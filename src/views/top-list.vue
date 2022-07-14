@@ -33,39 +33,39 @@
 </template>
 
 <script>
-import Scroll from "@/components/base/scroll/scroll.vue";
-import { getTopList } from "@/service/top-list";
-import { TOP_KEY } from "@/assets/js/constant";
-import storage from "good-storage";
+import Scroll from '@/components/base/scroll/scroll.vue'
+import { getTopList } from '@/service/top-list'
+import { TOP_KEY } from '@/assets/js/constant'
+import storage from 'good-storage'
 
 export default {
-  name: "recommend",
+  name: 'recommend',
   components: {
-    Scroll,
+    Scroll
   },
   data() {
     return {
       topList: [],
       loading: true,
-      selectedTop: null,
-    };
+      selectedTop: null
+    }
   },
   async created() {
-    const result = await getTopList();
-    this.topList = result.topList;
-    this.loading = false;
+    const result = await getTopList()
+    this.topList = result.topList
+    this.loading = false
   },
   methods: {
     selectItem(top) {
-      this.selectedTop = top;
-      this.cacheTop(top);
-      this.$router.push({ path: `/top-list/${top.id}` });
+      this.selectedTop = top
+      this.cacheTop(top)
+      this.$router.push({ path: `/top-list/${top.id}` })
     },
     cacheTop(top) {
-      storage.session.set(TOP_KEY, top);
-    },
-  },
-};
+      storage.session.set(TOP_KEY, top)
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>

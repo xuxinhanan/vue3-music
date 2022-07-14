@@ -9,18 +9,18 @@
 
 <script>
 export default {
-  name: "loading",
+  name: 'loading',
   data() {
     return {
-      title: "正在载入...",
-    };
+      title: '正在载入...'
+    }
   },
   methods: {
     setTitle(title) {
-      this.title = title;
-    },
-  },
-};
+      this.title = title
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>

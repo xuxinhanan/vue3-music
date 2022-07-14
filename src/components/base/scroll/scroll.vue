@@ -5,32 +5,32 @@
 </template>
 
 <script>
-import useScroll from "./use-scroll";
-import { ref } from "vue";
+import useScroll from './use-scroll'
+import { ref } from 'vue'
 
 export default {
-  name: "scroll",
+  name: 'scroll',
   props: {
     click: {
       type: Boolean,
-      default: true,
+      default: true
     },
     probeType: {
       type: Number,
-      default: 0,
-    },
+      default: 0
+    }
   },
-  emits: ["scroll"],
+  emits: ['scroll'],
   setup(props, { emit }) {
-    const rootRef = ref(null);
-    const scroll = useScroll(rootRef, props, emit);
+    const rootRef = ref(null)
+    const scroll = useScroll(rootRef, props, emit)
 
     return {
       rootRef,
-      scroll,
-    };
-  },
-};
+      scroll
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped></style>

@@ -29,68 +29,68 @@
 </template>
 
 <script>
-import Scroll from "../base/scroll/scroll.vue";
-import SongList from "../base/song-list/song-list.vue";
-import { mapActions } from "vuex";
+import Scroll from '../base/scroll/scroll.vue'
+import SongList from '../base/song-list/song-list.vue'
+import { mapActions } from 'vuex'
 
-const RESERVED_HEIGHT = 40;
+const RESERVED_HEIGHT = 40
 
 export default {
-  name: "music-list",
+  name: 'music-list',
   components: {
     Scroll,
-    SongList,
+    SongList
   },
   props: {
     songs: {
       type: Array,
       default() {
-        return [];
-      },
+        return []
+      }
     },
     title: String,
     pic: String,
     loading: Boolean,
     noResultText: {
       type: String,
-      default: "抱歉，没有找到可播放的歌曲",
+      default: '抱歉，没有找到可播放的歌曲'
     },
-    rank: Boolean,
+    rank: Boolean
   },
   data() {
     return {
       imageHeight: 0,
       scrollY: 0,
-      maxTranslateY: 0,
-    };
+      maxTranslateY: 0
+    }
   },
   computed: {
     noResult() {
-      return !this.loading && !this.songs.length;
+      return !this.loading && !this.songs.length
     },
     playBtnStyle() {
-      let display = "";
+      let display = ''
       if (this.scrollY >= this.maxTranslateY) {
-        display = "none";
+        display = 'none'
       }
-      return { display };
+      return { display }
     },
     bgImageStyle() {
-      let paddingTop = "70%";
-      let height = 0;
-      let zIndex = 0;
-      let translateZ = 0;
-      let scale = 1;
+      let paddingTop = '70%'
+      let height = 0
+      let zIndex = 0
+      let translateZ = 0
+      let scale = 1
 
       if (this.scrollY > this.maxTranslateY) {
-        zIndex = 10;
-        paddingTop = 0;
-        height = `${RESERVED_HEIGHT}px`;
-        translateZ = 1;
+        zIndex = 10
+        paddingTop = 0
+        height = `${RESERVED_HEIGHT}px`
+        translateZ = 1
       }
 
       if (this.scrollY < 0) {
-        scale = 1 + Math.abs(this.scrollY / this.imageHeight);
+        scale = 1 + Math.abs(this.scrollY / this.imageHeight)
       }
 
       return {
@@ -98,50 +98,50 @@ export default {
         paddingTop,
         height,
         backgroundImage: `url(${this.pic})`,
-        transform: `scale(${scale})translateZ(${translateZ}px)`,
-      };
+        transform: `scale(${scale})translateZ(${translateZ}px)`
+      }
     },
     scrollStyle() {
       return {
-        top: `${this.imageHeight}px`,
-      };
+        top: `${this.imageHeight}px`
+      }
     },
     filterStyle() {
-      let blur = 0;
+      let blur = 0
       // 在计算属性中使用响应式变量次数大于 1 时，最好使用临时变量缓存它
       // 原因不止是为了方便，还因为避免执行多次依赖收集
-      const scrollY = this.scrollY;
-      const imageHeight = this.imageHeight;
+      const scrollY = this.scrollY
+      const imageHeight = this.imageHeight
       if (scrollY >= 0) {
         blur =
           Math.min(this.maxTranslateY / imageHeight, scrollY / imageHeight) *
-          20;
+          20
       }
       return {
-        backdropFilter: `blur(${blur}px)`,
-      };
-    },
+        backdropFilter: `blur(${blur}px)`
+      }
+    }
   },
   mounted() {
-    this.imageHeight = this.$refs.bgImage.clientHeight;
-    this.maxTranslateY = this.imageHeight - RESERVED_HEIGHT;
+    this.imageHeight = this.$refs.bgImage.clientHeight
+    this.maxTranslateY = this.imageHeight - RESERVED_HEIGHT
   },
   methods: {
     goBack() {
-      this.$router.back();
+      this.$router.back()
     },
     onScroll(pos) {
-      this.scrollY = -pos.y;
+      this.scrollY = -pos.y
     },
     selectItem({ song, index }) {
-      this.selectPlay({ list: this.songs, index });
+      this.selectPlay({ list: this.songs, index })
     },
     random() {
-      this.randomPlay(this.songs);
+      this.randomPlay(this.songs)
     },
-    ...mapActions(["selectPlay", "randomPlay"]),
-  },
-};
+    ...mapActions(['selectPlay', 'randomPlay'])
+  }
+}
 </script>
 
 <style lang="scss" scoped>

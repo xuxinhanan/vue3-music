@@ -103,45 +103,45 @@
 </template>
 
 <script>
-import { useStore } from "vuex";
-import { computed, watch, ref, nextTick } from "vue";
-import useMode from "./use-mode";
-import useFavorite from "./use-favorite";
-import useCd from "./use-cd";
-import useLyric from "./use-lyric";
-import useMiddleInteractive from "./use-middle-interactive";
-import ProgressBar from "./progress-bar.vue";
-import Scroll from "@/components/base/scroll/scroll.vue";
-import MiniPlayer from "./mini-player.vue";
-import { formatTime } from "@/assets/js/util";
+import { useStore } from 'vuex'
+import { computed, watch, ref, nextTick } from 'vue'
+import useMode from './use-mode'
+import useFavorite from './use-favorite'
+import useCd from './use-cd'
+import useLyric from './use-lyric'
+import useMiddleInteractive from './use-middle-interactive'
+import ProgressBar from './progress-bar.vue'
+import Scroll from '@/components/base/scroll/scroll.vue'
+import MiniPlayer from './mini-player.vue'
+import { formatTime } from '@/assets/js/util'
 
 export default {
   // 首先要获取 currentSong, fullScreen 数据以正确渲染
-  name: "player",
+  name: 'player',
   components: {
     ProgressBar,
     Scroll,
-    MiniPlayer,
+    MiniPlayer
   },
   setup() {
     // data
-    const audioRef = ref(null);
-    const barRef = ref(null);
-    const songReady = ref(false);
-    const currentTime = ref(0);
-    let progressChanging = false;
+    const audioRef = ref(null)
+    const barRef = ref(null)
+    const songReady = ref(false)
+    const currentTime = ref(0)
+    let progressChanging = false
 
     // vuex data
-    const store = useStore();
-    const fullScreen = computed(() => store.state.fullScreen);
-    const currentSong = computed(() => store.getters.currentSong);
-    const playing = computed(() => store.state.playing);
-    const currentIndex = computed(() => store.state.currentIndex);
+    const store = useStore()
+    const fullScreen = computed(() => store.state.fullScreen)
+    const currentSong = computed(() => store.getters.currentSong)
+    const playing = computed(() => store.state.playing)
+    const currentIndex = computed(() => store.state.currentIndex)
 
     // hooks
-    const { modeIcon, changeMode } = useMode();
-    const { favoriteIconStyle, toggleFavorite } = useFavorite();
-    const { cdCls, cdRef, cdImageRef } = useCd();
+    const { modeIcon, changeMode } = useMode()
+    const { favoriteIconStyle, toggleFavorite } = useFavorite()
+    const { cdCls, cdRef, cdImageRef } = useCd()
     const {
       currentLyric,
       currentLineNum,
@@ -150,160 +150,160 @@ export default {
       lyricListRef,
       stopLyric,
       pureMusicLyric,
-      playingLyric,
+      playingLyric
     } = useLyric({
       songReady,
-      currentTime,
-    });
+      currentTime
+    })
     const {
       currentShow,
       middleLStyle,
       middleRStyle,
       onMiddleTouchStart,
       onMiddleTouchMove,
-      onMiddleTouchEnd,
-    } = useMiddleInteractive();
+      onMiddleTouchEnd
+    } = useMiddleInteractive()
 
     // computed
-    const playlist = computed(() => store.state.playlist);
+    const playlist = computed(() => store.state.playlist)
 
     const playIcon = computed(() => {
-      return playing.value ? "icon-pause" : "icon-play";
-    });
+      return playing.value ? 'icon-pause' : 'icon-play'
+    })
 
     const progress = computed(() => {
-      return currentTime.value / currentSong.value.duration;
-    });
+      return currentTime.value / currentSong.value.duration
+    })
 
     const disableCls = computed(() => {
-      return songReady.value ? "" : "disable";
-    });
+      return songReady.value ? '' : 'disable'
+    })
 
     // watch
     watch(currentSong, (newSong) => {
       if (!newSong.id || !newSong.url) {
-        return;
+        return
       }
-      currentTime.value = 0;
-      songReady.value = false;
-      const audioEl = audioRef.value;
-      audioEl.src = newSong.url;
-      audioEl.play();
-    });
+      currentTime.value = 0
+      songReady.value = false
+      const audioEl = audioRef.value
+      audioEl.src = newSong.url
+      audioEl.play()
+    })
 
     watch(playing, (newPlaying) => {
       if (!songReady.value) {
-        return;
+        return
       }
-      const audioEl = audioRef.value;
+      const audioEl = audioRef.value
       if (newPlaying) {
-        audioEl.play();
-        playLyric();
+        audioEl.play()
+        playLyric()
       } else {
-        audioEl.pause();
-        stopLyric();
+        audioEl.pause()
+        stopLyric()
       }
-    });
+    })
 
     watch(fullScreen, async (newFullScreen) => {
       if (newFullScreen) {
-        await nextTick();
-        barRef.value.setOffset(progress.value);
+        await nextTick()
+        barRef.value.setOffset(progress.value)
       }
-    });
+    })
 
     // methods
     function goBack() {
-      store.commit("setFullScreen", false);
+      store.commit('setFullScreen', false)
     }
 
     function togglePlay() {
       if (!songReady.value) {
-        return;
+        return
       }
-      store.commit("setPlayingState", !playing.value);
+      store.commit('setPlayingState', !playing.value)
     }
 
     function pause() {
-      store.commit("setPlayingState", false);
+      store.commit('setPlayingState', false)
     }
 
     function prev() {
-      const list = playlist.value;
-      if (!songReady.value || !list.length) return;
+      const list = playlist.value
+      if (!songReady.value || !list.length) return
       if (list.length === 1) {
-        loop();
+        loop()
       } else {
-        let index = currentIndex.value - 1;
+        let index = currentIndex.value - 1
         if (index === -1) {
-          index = list.length - 1;
+          index = list.length - 1
         }
-        store.commit("setCurrentIndex", index);
+        store.commit('setCurrentIndex', index)
         if (!playing.value) {
-          store.commit("setPlayingState", true);
+          store.commit('setPlayingState', true)
         }
       }
     }
 
     function next() {
-      const list = playlist.value;
-      if (!songReady.value || !list.length) return;
+      const list = playlist.value
+      if (!songReady.value || !list.length) return
       if (list.length === 1) {
-        loop();
+        loop()
       } else {
-        let index = currentIndex.value + 1;
+        let index = currentIndex.value + 1
         if (index === list.length) {
-          index = 0;
+          index = 0
         }
-        store.commit("setCurrentIndex", index);
+        store.commit('setCurrentIndex', index)
         if (!playing.value) {
-          store.commit("setPlayingState", true);
+          store.commit('setPlayingState', true)
         }
       }
     }
 
     function loop() {
-      const audioEl = audioRef.value;
-      audioEl.currentTime = 0;
-      audioEl.play();
+      const audioEl = audioRef.value
+      audioEl.currentTime = 0
+      audioEl.play()
     }
 
     function ready() {
       if (songReady.value) {
-        return;
+        return
       }
-      songReady.value = true;
-      playLyric();
+      songReady.value = true
+      playLyric()
     }
 
     // 防止一首歌出现了问题也不能切换的情况
     function error() {
-      songReady.value = true;
+      songReady.value = true
     }
 
     function updateTime(e) {
       if (!progressChanging) {
-        currentTime.value = e.target.currentTime;
+        currentTime.value = e.target.currentTime
       }
     }
 
     function onProgressChanging(progress) {
-      progressChanging = true;
-      currentTime.value = currentSong.value.duration * progress;
+      progressChanging = true
+      currentTime.value = currentSong.value.duration * progress
 
-      playLyric();
-      stopLyric();
+      playLyric()
+      stopLyric()
     }
 
     function onProgressChanged(progress) {
-      progressChanging = false;
+      progressChanging = false
       audioRef.value.currentTime = currentTime.value =
-        currentSong.value.duration * progress;
+        currentSong.value.duration * progress
       // 拖动完成时如果是暂停播放状态，则继续播放
       if (!playing.value) {
-        store.commit("setPlayingState", true);
+        store.commit('setPlayingState', true)
       }
-      playLyric();
+      playLyric()
     }
 
     return {
@@ -350,10 +350,10 @@ export default {
       middleRStyle,
       onMiddleTouchStart,
       onMiddleTouchMove,
-      onMiddleTouchEnd,
-    };
-  },
-};
+      onMiddleTouchEnd
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>

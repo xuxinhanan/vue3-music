@@ -43,36 +43,36 @@
 </template>
 
 <script>
-import Scroll from "@/components/base/scroll/scroll.vue";
-import useFixed from "./use-fixed";
-import useShortcut from "./use-shortcut";
+import Scroll from '@/components/base/scroll/scroll.vue'
+import useFixed from './use-fixed'
+import useShortcut from './use-shortcut'
 
 export default {
-  name: "index-list",
+  name: 'index-list',
   components: {
-    Scroll,
+    Scroll
   },
-  emits: ["select"],
+  emits: ['select'],
   props: {
     data: {
       type: Array,
       default() {
-        return [];
-      },
-    },
+        return []
+      }
+    }
   },
   setup(props, { emit }) {
     const { groupRef, onScroll, fixedTitle, fixedStyle, currentIndex } =
-      useFixed(props);
+      useFixed(props)
     const {
       shortcutList,
       scrollRef,
       onShortcutTouchStart,
-      onShortcutTouchMove,
-    } = useShortcut(props, groupRef);
+      onShortcutTouchMove
+    } = useShortcut(props, groupRef)
 
     function onItemClick(item) {
-      emit("select", item);
+      emit('select', item)
     }
 
     return {
@@ -85,10 +85,10 @@ export default {
       currentIndex,
       scrollRef,
       onShortcutTouchStart,
-      onShortcutTouchMove,
-    };
-  },
-};
+      onShortcutTouchMove
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>

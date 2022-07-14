@@ -10,15 +10,15 @@
 </template>
 
 <script>
-import createDetailComponent from "@/assets/js/create-detail-component";
-import { getSingerDetail } from "@/service/singer";
-import { SINGER_KEY } from "@/assets/js/constant";
+import createDetailComponent from '@/assets/js/create-detail-component'
+import { getSingerDetail } from '@/service/singer'
+import { SINGER_KEY } from '@/assets/js/constant'
 
 export default createDetailComponent(
-  "singer-detail",
+  'singer-detail',
   SINGER_KEY,
   getSingerDetail
-);
+)
 </script>
 
 <style lang="scss" scoped>
