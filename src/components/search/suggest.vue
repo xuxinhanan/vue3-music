@@ -82,7 +82,7 @@ export default {
 
     watch(
       () => props.query,
-      async (newQuery) => {
+      async newQuery => {
         if (!newQuery) {
           return
         }
@@ -184,7 +184,7 @@ export default {
       .icon {
         flex: 0 0 30px;
         width: 30px;
-        [class^="icon-"] {
+        [class^='icon-'] {
           font-size: 14px;
           color: $color-text-d;
         }

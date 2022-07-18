@@ -1,12 +1,13 @@
-import { createStore, createLogger } from 'vuex'
+import { createStore, createLogger, storeKey } from 'vuex'
 import state from './state'
 import mutations from './mutations'
 import * as getters from './getters'
 import * as actions from './actions'
+import { THEME_DARK } from '@/assets/js/constant'
 
 const debug = process.env.NODE_ENV !== 'production'
 
-export default createStore({
+const store = createStore({
   state,
   getters,
   mutations,
@@ -14,3 +15,9 @@ export default createStore({
   strict: debug,
   plugins: debug ? [createLogger()] : []
 })
+
+export function setupStore() {
+  store.dispatch('setTheme', THEME_DARK)
+}
+
+export default store

@@ -55,7 +55,7 @@ export default {
 
     const { deleteSearch } = useSearchHistory()
 
-    getHotKeys().then((result) => {
+    getHotKeys().then(result => {
       hotKeys.value = result?.hotKeys
     })
 

@@ -25,7 +25,7 @@ import Suggest from '@/components/search/suggest.vue'
 import SearchList from '@/components/base/search-list/search-list.vue'
 import Scroll from '@/components/base/scroll/scroll.vue'
 import SearchContent from '@/components/search/search-content.vue'
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 import { getHotKeys } from '@/service/search'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
@@ -48,13 +48,12 @@ export default {
     const selectedSinger = ref(null)
 
     const store = useStore()
-    const searchHistory = computed(() => store.state.searchHistory)
 
     const router = useRouter()
 
-    const { saveSearch, deleteSearch } = useSearchHistory()
+    const { saveSearch } = useSearchHistory()
 
-    getHotKeys().then((result) => {
+    getHotKeys().then(result => {
       hotKeys.value = result?.hotKeys
     })
 
@@ -85,8 +84,6 @@ export default {
       query,
       hotKeys,
       selectedSinger,
-      searchHistory,
-      deleteSearch,
       addQuery,
       selectSong,
       selectSinger

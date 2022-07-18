@@ -24,13 +24,11 @@ export default {
     }
   },
   watch: {
-    // 当前组件修改了状态
     query: {
       handler: debounce(300, function (newQuery) {
         this.$emit('update:modelValue', newQuery.trim())
       })
     },
-    // 父组件修改了状态
     modelValue(newVal) {
       this.query = newVal
     }
@@ -48,9 +46,6 @@ export default {
 .search-input {
   display: flex;
   align-items: center;
-  /* 假如您需要并排放置两个带边框的框，可通过将 box-sizing 设置为 "border-box" */
-  /* 为元素指定的任何内边距和边框都将在已设定的宽度和高度内进行绘制，也称标准盒子模型 */
-  /* 默认值：content-box，在宽度和高度之外绘制元素的内边距和边框 */
   box-sizing: border-box;
   width: 100%;
   padding: 0 6px;

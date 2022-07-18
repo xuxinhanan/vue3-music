@@ -1,5 +1,6 @@
 import { PLAY_MODE } from '@/assets/js/constant'
-import { shuffle } from '@/assets/js/util'
+import { THEME_LIGHT, THEME_DARK, LIGHT, DARK } from '@/assets/js/constant'
+import { shuffle, changeTheme } from '@/assets/js/util'
 
 export function selectPlay({ commit, state }, { list, index }) {
   commit('setPlayMode', PLAY_MODE.sequence)
@@ -58,6 +59,18 @@ export function addSong({ commit, state }, song) {
   commit('setCurrentIndex', currentIndex)
   commit('setPlayingState', true)
   commit('setFullScreen', true)
+}
+
+export function setTheme({ commit }, themeType) {
+  switch (themeType) {
+    case THEME_LIGHT:
+      changeTheme(LIGHT)
+      break
+    case THEME_DARK:
+      changeTheme(DARK)
+      break
+  }
+  commit('setTheme', themeType)
 }
 
 function findIndex(list, song) {

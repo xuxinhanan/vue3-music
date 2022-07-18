@@ -73,13 +73,13 @@ export default {
         height: 24px;
         background-size: 25px 24px;
         &.icon0 {
-          @include bg-image("first");
+          @include bg-image('first');
         }
         &.icon1 {
-          @include bg-image("second");
+          @include bg-image('second');
         }
         &.icon2 {
-          @include bg-image("third");
+          @include bg-image('third');
         }
       }
       .text {

@@ -20,11 +20,27 @@ module.exports = {
     }
   },
   configureWebpack: config => {
+    /**
+     * 添加打包速度、大小分析工具。
+     * 使用方式在打包命令后面添加 --report。
+     * 如：npm run build --report
+     */
     if (process.env.npm_config_report) {
       const BundleAnalyzerPlugin =
         require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+      const SpeedMeasurePlugin = require('speed-measure-webpack-plugin')
       config.plugins.push(new BundleAnalyzerPlugin())
+      config.plugins.push(new SpeedMeasurePlugin())
     }
+    /** ---------------------------------------------- */
+
+    let cache = {
+      type: 'filesystem'
+    }
+
+    Object.assign(config, {
+      cache
+    })
   },
   productionSourceMap: false,
   publicPath: process.env.NODE_ENV === 'production' ? '/music-next/' : '/'

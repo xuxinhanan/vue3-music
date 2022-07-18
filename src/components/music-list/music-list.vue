@@ -114,8 +114,7 @@ export default {
       const imageHeight = this.imageHeight
       if (scrollY >= 0) {
         blur =
-          Math.min(this.maxTranslateY / imageHeight, scrollY / imageHeight) *
-          20
+          Math.min(this.maxTranslateY / imageHeight, scrollY / imageHeight) * 20
       }
       return {
         backdropFilter: `blur(${blur}px)`

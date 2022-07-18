@@ -1,4 +1,5 @@
 import { PLAY_MODE, FAVORITE_KEY, SEARCH_KEY } from '@/assets/js/constant'
+import { THEME_LIGHT } from '@/assets/js/constant'
 import { load } from '@/assets/js/array-store'
 
 const state = {
@@ -9,7 +10,8 @@ const state = {
   currentIndex: 0, // 当前播放
   fullScreen: false, // 全屏
   favoriteList: load(FAVORITE_KEY),
-  searchHistory: load(SEARCH_KEY)
+  searchHistory: load(SEARCH_KEY),
+  theme: THEME_LIGHT
 }
 
 export default state

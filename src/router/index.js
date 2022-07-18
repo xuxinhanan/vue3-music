@@ -12,6 +12,14 @@ const Album = () => import('@/views/album' /* webpackChunkName: "album" */)
 const TopDetail = () =>
   import('@/views/top-detail' /* webpackChunkName: "top-detail" */)
 
+// import Recommend from '@/views/recommend'
+// import Singer from '@/views/singer'
+// import TopList from '@/views/top-list'
+// import Search from '@/views/search'
+// import SingerDetail from '@/views/singer-detail'
+// import Album from '@/views/album'
+// import TopDetail from '@/views/top-detail'
+
 const routes = [
   {
     path: '/',

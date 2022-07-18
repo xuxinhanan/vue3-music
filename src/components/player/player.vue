@@ -180,7 +180,7 @@ export default {
     })
 
     // watch
-    watch(currentSong, (newSong) => {
+    watch(currentSong, newSong => {
       if (!newSong.id || !newSong.url) {
         return
       }
@@ -191,7 +191,7 @@ export default {
       audioEl.play()
     })
 
-    watch(playing, (newPlaying) => {
+    watch(playing, newPlaying => {
       if (!songReady.value) {
         return
       }
@@ -205,7 +205,7 @@ export default {
       }
     })
 
-    watch(fullScreen, async (newFullScreen) => {
+    watch(fullScreen, async newFullScreen => {
       if (newFullScreen) {
         await nextTick()
         barRef.value.setOffset(progress.value)

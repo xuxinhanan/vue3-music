@@ -1,0 +1,23 @@
+{
+  "id": "3526340",
+  "name": "vue3-music",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "909106",
+      "name": "i-白天",
+      "font_class": "baitian",
+      "unicode": "e64f",
+      "unicode_decimal": 58959
+    },
+    {
+      "icon_id": "22903748",
+      "name": "黑夜模式",
+      "font_class": "heiyemoshi",
+      "unicode": "e76b",
+      "unicode_decimal": 59243
+    }
+  ]
+}

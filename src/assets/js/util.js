@@ -23,3 +23,9 @@ export function formatTime(interval) {
   const second = ((interval % 60) + '').padStart(2, '0')
   return `${minute}:${second}`
 }
+
+export function changeTheme(theme) {
+  Object.entries(theme).forEach(ele => {
+    document.body.style.setProperty(ele[0], ele[1])
+  })
+}
