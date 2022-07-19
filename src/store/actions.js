@@ -1,8 +1,9 @@
-import { PLAY_MODE } from '@/assets/js/constant'
+import { save } from '@/assets/js/array-store'
+import { PLAY_MODE, THEME_KEY } from '@/assets/js/constant'
 import { THEME_LIGHT, THEME_DARK, LIGHT, DARK } from '@/assets/js/constant'
 import { shuffle, changeTheme } from '@/assets/js/util'
 
-export function selectPlay({ commit, state }, { list, index }) {
+export function selectPlay({ commit }, { list, index }) {
   commit('setPlayMode', PLAY_MODE.sequence)
   commit('setSequenceList', list)
   commit('setPlayingState', true)
@@ -61,12 +62,18 @@ export function addSong({ commit, state }, song) {
   commit('setFullScreen', true)
 }
 
+/**
+ * @description: 设置主题状态API
+ * @param {*} themeType 要设置的主题类型(dark/light)
+ */
 export function setTheme({ commit }, themeType) {
   switch (themeType) {
     case THEME_LIGHT:
+      save(themeType, THEME_KEY, item => item === themeType)
       changeTheme(LIGHT)
       break
     case THEME_DARK:
+      save(themeType, THEME_KEY, item => item === themeType)
       changeTheme(DARK)
       break
   }

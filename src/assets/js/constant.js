@@ -3,6 +3,7 @@ export const FAVORITE_KEY = '__favorite__'
 export const ALBUM_KEY = '__album__'
 export const TOP_KEY = '__top__'
 export const SEARCH_KEY = '__search__'
+export const THEME_KEY = '__theme__'
 export const THEME_LIGHT = '__light__'
 export const THEME_DARK = '__dark__'
 

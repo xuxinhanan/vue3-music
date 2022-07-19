@@ -3,7 +3,11 @@
     <div class="search-input-wrapper">
       <search-input v-model="query"></search-input>
     </div>
-    <searchContent v-show="!query" @add-query="addQuery"></searchContent>
+    <searchContent
+      v-show="!query"
+      :query="query"
+      @add-query="addQuery"
+    ></searchContent>
     <div class="search-result" v-show="query">
       <suggest
         :query="query"
@@ -26,7 +30,6 @@ import SearchList from '@/components/base/search-list/search-list.vue'
 import Scroll from '@/components/base/scroll/scroll.vue'
 import SearchContent from '@/components/search/search-content.vue'
 import { ref } from 'vue'
-import { getHotKeys } from '@/service/search'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 import storage from 'good-storage'
@@ -44,7 +47,6 @@ export default {
   },
   setup() {
     const query = ref('')
-    const hotKeys = ref([])
     const selectedSinger = ref(null)
 
     const store = useStore()
@@ -52,10 +54,6 @@ export default {
     const router = useRouter()
 
     const { saveSearch } = useSearchHistory()
-
-    getHotKeys().then(result => {
-      hotKeys.value = result?.hotKeys
-    })
 
     function addQuery(string) {
       query.value = string
@@ -82,7 +80,6 @@ export default {
 
     return {
       query,
-      hotKeys,
       selectedSinger,
       addQuery,
       selectSong,

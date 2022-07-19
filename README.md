@@ -6,58 +6,28 @@ vue3-music
 │  ├─ App.vue
 │  ├─ assets                                      静态资源文件
 │  │  ├─ fonts
-│  │  ├─ icon
 │  │  ├─ images
 │  │  ├─ js
 │  │  │  ├─ array-store.js                        本地存储
 │  │  │  ├─ constant.js                           常量
 │  │  │  └─ util.js                               工具函数
-│  │  └─ scss
-│  │     ├─ base.scss                             													
-│  │     ├─ index.scss
-│  │     ├─ mixin.scss
-│  │     └─ variable.scss                         样式规范
+│  │  └─ scss                                     样式规范
 │  ├─ components																	组件主目录
-│  │  ├─ base																	
-│  │  │  ├─ loading
-│  │  │  ├─ no-result
-│  │  │  ├─ scroll
-│  │  │  ├─ search-list
-│  │  │  ├─ slider
-│  │  │  └─ song-list
-│  │  ├─ header
-│  │  ├─ index-list
-│  │  ├─ music-list
-│  │  ├─ player
-│  │  ├─ search
-│  │  └─ tab
-│  ├─ main.js
-│  ├─ router																			 路由
-│  │  └─ index.js
-│  ├─ service																			 请求API
-│  │  ├─ base.js
-│  │  ├─ recommend.js
-│  │  ├─ search.js
-│  │  ├─ singer.js
-│  │  ├─ song.js
-│  │  └─ top-list.js
-│  ├─ store                                        状态管理
-│  │  ├─ actions.js
-│  │  ├─ getters.js
-│  │  ├─ index.js
-│  │  ├─ mutations.js
-│  │  └─ state.js
-│  └─ views                                        一级路由视图
-├─ .browserslistrc                                 目标环境配置表
-├─ .cz-config.js                                   提交规范
-├─ .editorconfig                                   编辑器规范
-├─ .eslintrc.js																		 ESlint规范
+│  ├─ router																			路由
+│  ├─ service																			请求API
+│  ├─ store                                       状态管理
+│  ├─views                                        一级路由视图
+│  └─main.js
+├─ .browserslistrc                                目标环境配置表
+├─ .cz-config.js                                  提交规范
+├─ .editorconfig                                  编辑器规范
+├─ .eslintrc.js																	  ESlint规范
 ├─ .gitignore 
 ├─ .prettierignore
-├─ .prettierrc                                     prettier规范
-├─ babel.config.js                                 babel配置表
+├─ .prettierrc                                    prettier规范
+├─ babel.config.js                                babel配置表
 ├─ commitlint.config.js
-├─ jsconfig.json																	 vscode配置路径别名
+├─ jsconfig.json															 	  vscode配置路径别名
 ├─ package-lock.json
 ├─ package.json
 ├─ vue.config.js
@@ -112,10 +82,12 @@ Git Hook 工具 : husky
 
 
 
-# 四、项目功能
+# 四、项目功能（持续更新...）
 
 + 其他
+
   + ✅ 一键换肤
+
   + ✅ 路由切换过渡动效
   + ✅ mini播放器
 
@@ -132,9 +104,13 @@ Git Hook 工具 : husky
   + ✅ 榜单列表
 + 搜索页
   + ✅ 搜索框
+    + 请求防抖
+    + 输入文字显示搜索结果
   + ✅ 搜索结果
-  + ✅ 搜索结果对应播放跳转
+    +  搜索结果点击跳转播放页
   + ✅ 搜索历史
+    + 删除某一项搜索历史
+    + 一键清空搜索历史
 
 ​	
 

@@ -1,5 +1,5 @@
 <template>
-  <scroll class="search-content">
+  <scroll class="search-content" ref="scrollRef">
     <div>
       <div class="hot-keys">
         <h1 class="title">热门搜索</h1>
@@ -17,7 +17,7 @@
       <div class="search-history" v-show="searchHistory.length">
         <h1 class="title">
           <span class="text">搜索历史</span>
-          <span class="clear" @click="showConfirm">
+          <span class="clear" @click="deleteAllSearch">
             <i class="icon-clear"></i>
           </span>
         </h1>
@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import { ref, computed } from 'vue'
+import { ref, computed, watch, nextTick } from 'vue'
 import { getHotKeys } from '@/service/search'
 import { useStore } from 'vuex'
 import useSearchHistory from './use-search-history'
@@ -45,30 +45,49 @@ export default {
     Scroll,
     SearchList
   },
+  props: {
+    query: String
+  },
   emits: ['add-query'],
   setup(props, { emit }) {
     const hotKeys = ref([])
+    const scrollRef = ref(null)
 
     const store = useStore()
 
     const searchHistory = computed(() => store.state.searchHistory)
 
-    const { deleteSearch } = useSearchHistory()
+    const { deleteSearch, deleteAllSearch } = useSearchHistory()
 
     getHotKeys().then(result => {
       hotKeys.value = result?.hotKeys
     })
 
-    // 记得父组件中接收事件然后修改query
+    watch(
+      () => props.query,
+      async newQuery => {
+        if (!newQuery) {
+          await nextTick()
+          refreshScroll()
+        }
+      }
+    )
+
+    function refreshScroll() {
+      scrollRef.value.scroll.refresh()
+    }
+
     function addQuery(string) {
       emit('add-query', string)
     }
 
     return {
+      scrollRef,
       hotKeys,
       searchHistory,
       addQuery,
-      deleteSearch
+      deleteSearch,
+      deleteAllSearch
     }
   }
 }
