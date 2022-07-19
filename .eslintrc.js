@@ -1,9 +1,12 @@
 module.exports = {
-  root: true, // 表示当前目录即为根目录，ESLint 规则将被限制到该目录下
+  // 表示当前目录即为根目录，ESLint 规则将被限制到该目录下
+  root: true,
   env: {
-    node: true // 在 node 环境下启动 ESLint 检测
+    // 在 node 环境下启动 ESLint 检测
+    node: true
   },
-  extends: ['plugin:vue/vue3-essential', '@vue/standard'], // ESLint 中基础配置需要继承的配置
+  // ESLint 中基础配置需要继承的配置
+  extends: ['plugin:vue/vue3-essential', '@vue/standard'],
   // 解析器
   parserOptions: {
     parser: '@babel/eslint-parser'

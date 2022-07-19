@@ -52,7 +52,7 @@ CSS 预编译 : Sass
 
 HTTP 工具 : Axios
 
-Git Hook 工具 : husky
+Git Hook 工具 : husky + lint-staged
 
 代码规范 :EditorConfig + Prettier + ESLint
 
@@ -60,9 +60,17 @@ Git Hook 工具 : husky
 
 
 
+# 三、开发文档
+
+[主题替换方案](./doc/主题替换.md)
+
+[组件联动](./doc/组件联动.md)
+
+[splitChunks在项目中的实践](./doc/splitChunks在项目中的实践.md)
 
 
-# 三、项目优化
+
+# 四、项目优化
 
 + babel7 配置优化：
 
@@ -71,22 +79,26 @@ Git Hook 工具 : husky
 + webpack优化：
 
   + ✅开启webpack5新增功能——持久化缓存
+  + ✅全局引入sass变量
 
 + 项目优化：
 
-  + ✅使用keep-alive组件对页面组件进行缓存
+  + ✅keep-alive缓存路由组件
   + ✅路由懒加载分包
   + ✅防抖查询
-
+  + ✅图片懒加载
+  
   
 
 
 
-# 四、项目功能（持续更新...）
+# 五、项目功能（持续更新...）
 
 + 其他
 
   + ✅ 一键换肤
+  + ✅ noresult, loading组件封装为自定义指令
+  + ✅ 洗牌算法完成数组乱序
 
   + ✅ 路由切换过渡动效
   + ✅ mini播放器

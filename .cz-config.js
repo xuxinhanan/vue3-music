@@ -64,7 +64,8 @@ module.exports = {
     { name: 'common' },
     { name: 'build' },
     { name: 'core' },
-    { name: 'upgrade' }
+    { name: 'upgrade' },
+    { name: 'node' }
   ],
 
   // it needs to match the value for field type. Eg.: 'fix'
@@ -86,7 +87,7 @@ module.exports = {
     type: '选择更改类型:',
     scope: '\n更改的范围:',
     // 如果allowcustomscopes为true，则使用
-    // customScope: 'Denote the SCOPE of this change:',
+    customScope: 'Denote the SCOPE of this change:',
     subject: '简短描述:\n',
     body: '详细描述. 使用"|"换行:\n',
     breaking: 'Breaking Changes列表:\n',
@@ -94,6 +95,6 @@ module.exports = {
     confirmCommit: '确认提交?'
   },
 
-  allowCustomScopes: false,
+  allowCustomScopes: true,
   allowBreakingChanges: ['feat', 'fix']
 }
