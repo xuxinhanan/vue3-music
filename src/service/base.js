@@ -11,6 +11,12 @@ const baseURL =
 
 axios.defaults.baseURL = baseURL
 
+/**
+ * @description: 对axios.get进行封装，封装之后就无需考虑请求错误的情形了
+ * @param {*} url 请求url
+ * @param {*} params 请求参数
+ * @return {*} 响应结果
+ */
 export function get(url, params) {
   return axios
     .get(url, {

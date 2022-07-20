@@ -3,10 +3,18 @@ import { addClass, removeClass } from '@/assets/js/dom'
 
 const relativeCls = 'g-relative'
 
+/**
+ * @description: 将传入的组件做成自定义指令
+ * @param {*} Comp 传入的需要做成自定义指令的组件
+ * @param {*} binding 自定义指令的值，例如 v-loading="loading"，则 binding.value === loading
+ * @return {*}
+ */
 export default function createLoadingLikeDirective(Comp) {
   return {
     mounted(el, binding) {
+      // 根据传入的组件创建组件实例
       const app = createApp(Comp)
+      // 根据组件实例创建相应的 DOM 元素
       const instance = app.mount(document.createElement('div'))
       const name = Comp.name
       if (!el[name]) {

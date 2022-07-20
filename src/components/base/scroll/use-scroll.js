@@ -13,6 +13,7 @@ export default function useScroll(wrapperRef, options, emit) {
       ...options
     }))
 
+    // 当配置了probeType的时候发出scroll事件，并将位置信息传递出去
     if (options.probeType > 0) {
       scrollVal.on('scroll', pos => {
         emit('scroll', pos)

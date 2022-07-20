@@ -224,9 +224,9 @@ module.exports = {
 
 + 分包结果：
 
-![image-20220718144327084](C:\Users\64554\AppData\Roaming\Typora\typora-user-images\image-20220718144327084.png)
+![image-20220718144327084](./image/6.png)
 
-![image-20220718144334161](C:\Users\64554\AppData\Roaming\Typora\typora-user-images\image-20220718144334161.png)
+![image-20220718144334161](./image/7.png)
 
 
 

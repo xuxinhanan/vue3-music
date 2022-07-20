@@ -129,7 +129,6 @@ export default {
     }
   }
   .fixed {
-    /* 绝对定位，原点是父容器的左上角 */
     position: absolute;
     top: 0;
     left: 0;

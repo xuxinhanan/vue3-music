@@ -44,6 +44,8 @@ vue3-music
 
 前端框架 :Vue 3
 
+第三方库：Better-Scroll
+
 路由工具 : Vue Router
 
 状态管理 : Vuex 
@@ -62,11 +64,15 @@ Git Hook 工具 : husky + lint-staged
 
 # 三、开发文档
 
-[主题替换方案](./doc/主题替换.md)
+[主题替换方案](./docx/主题替换.md)
 
-[组件联动](./doc/组件联动.md)
+[多组件联动](./docx/多组件联动.md)
 
-[splitChunks在项目中的实践](./doc/splitChunks在项目中的实践.md)
+[splitChunks在项目中的实践](./docx/splitChunks在项目中的实践.md)
+
+[添加防抖时踩的坑](./docx/添加防抖时踩的坑.md)
+
+[滚动标题+吸顶合并方案](./docx/滚动标题+吸顶合并方案.md)
 
 
 
@@ -76,17 +82,29 @@ Git Hook 工具 : husky + lint-staged
 
   + ✅设置useBuiltIns、targets 参数，减小引入的 polyfill 文件体积
 
-+ webpack优化：
++ webpack配置优化：
 
   + ✅开启webpack5新增功能——持久化缓存
+
   + ✅全局引入sass变量
+
+  + ✅添加打包分析
+
+  + ✅添加路径别名alias
+
+    
 
 + 项目优化：
 
   + ✅keep-alive缓存路由组件
+  
   + ✅路由懒加载分包
+  
   + ✅防抖查询
+  
   + ✅图片懒加载
+  
+    
   
   
 
@@ -97,32 +115,41 @@ Git Hook 工具 : husky + lint-staged
 + 其他
 
   + ✅ 一键换肤
-  + ✅ noresult, loading组件封装为自定义指令
   + ✅ 洗牌算法完成数组乱序
-
   + ✅ 路由切换过渡动效
   + ✅ mini播放器
 
-
-
 + 推荐页
   + ✅ 轮播图
+  
   + ✅ 歌单列表
+  
+    :blush: 点击歌单跳转歌单详情页
+  
 + 歌手列表
-  + ✅ 顶部固定标题栏
+  + ✅ 顶部固定标题+吸顶合并效果
   + ✅ shortcut
   + ✅ 歌手跳转
+  
 + 排行榜
   + ✅ 榜单列表
+  
 + 搜索页
   + ✅ 搜索框
-    + 请求防抖
-    + 输入文字显示搜索结果
+    
+    :blush: 请求防抖
+    
+    :blush: 输入文字显示搜索结果
+    
   + ✅ 搜索结果
-    +  搜索结果点击跳转播放页
+    
+    :blush: 搜索结果点击跳转播放页
+    
   + ✅ 搜索历史
-    + 删除某一项搜索历史
-    + 一键清空搜索历史
+    
+    :blush: 删除某一项搜索历史
+    
+    :blush: 一键清空搜索历史
 
 ​	
 

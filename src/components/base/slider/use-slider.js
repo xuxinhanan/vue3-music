@@ -9,6 +9,7 @@ export default function useSlider(wrapperRef) {
   const slider = ref(null)
   const currentPageIndex = ref(0)
 
+  /* 在setup()里面是拿不到Dom的，要在onMounted生命周期去获取dom，完成BScroll的初始化 */
   onMounted(() => {
     const sliderVal = (slider.value = new BScroll(wrapperRef?.value, {
       click: true,
@@ -17,7 +18,7 @@ export default function useSlider(wrapperRef) {
       momentum: false,
       bounce: false,
       probeType: 2,
-      slide: true
+      slide: true // 开启轮播图默认配置
     }))
 
     sliderVal.on('slideWillChange', page => {
@@ -25,6 +26,7 @@ export default function useSlider(wrapperRef) {
     })
   })
 
+  /* 组件卸载之后也要销毁第三方库的实例 */
   onUnmounted(() => {
     slider.value.destroy()
   })

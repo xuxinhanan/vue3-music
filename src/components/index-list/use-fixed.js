@@ -8,8 +8,11 @@ export default function useFixed(props) {
   const currentIndex = ref(0)
   const distance = ref(0)
 
+  /**
+   * @description: 计算固定标题栏的文字内容
+   * @return {*} 文字内容
+   */
   const fixedTitle = computed(() => {
-    // 小细节：如果初始往上滚动不应该显示'热'，而是显示''（空），最好再v-show一下，直接不展示这个层
     if (scrollY.value < 0) {
       return ''
     }
@@ -17,6 +20,10 @@ export default function useFixed(props) {
     return currentGroup ? currentGroup.title : ''
   })
 
+  /**
+   * @description: 计算固定标题栏的偏移量
+   * @return {*} 偏移量
+   */
   const fixedStyle = computed(() => {
     const distanceVal = distance.value
     const diff =
@@ -28,15 +35,21 @@ export default function useFixed(props) {
     }
   })
 
+  /**
+   * @description: 监听渲染数据，当有数据之后就可以计算出每个li的高度了。
+   * 另外，数据变化后，DOM更改发生在nextTick后，因此需要等一个tick才能正确计算。
+   */
   watch(
     () => props.data,
     async () => {
-      // 数据变化之后dom其实是没有变化的，因此要等nextTick才能计算出新的dom
       await nextTick()
       calculate()
     }
   )
 
+  /**
+   * @description: 监听滚动坐标，计算出当前落入的区间，并且计算出当前位置与下一个区间的距离，用于吸顶合并交互
+   */
   watch(scrollY, newY => {
     const listHeightsVal = listHeights.value
     for (let i = 0; i < listHeightsVal.length - 1; i++) {
@@ -50,6 +63,9 @@ export default function useFixed(props) {
     }
   })
 
+  /**
+   * @description: 计算列表中每个li的高度，将结果保存在数组中，方便与渲染数据进行对比拿到索引值
+   */
   function calculate() {
     const list = groupRef.value.children
     const listHeightsVal = listHeights.value
@@ -64,8 +80,10 @@ export default function useFixed(props) {
     }
   }
 
+  /**
+   * @description: 拿到滚动事件传递的y坐标，因为BScroll给出的是负值，因此需要取反
+   */
   function onScroll(pos) {
-    // 拿到滚动的y坐标，因为better-scroll给出的是负值，因此需要取反
     scrollY.value = -pos.y
   }
 
