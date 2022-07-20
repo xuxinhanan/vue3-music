@@ -50,7 +50,7 @@ vue3-music
 
 状态管理 : Vuex 
 
-CSS 预编译 : Sass 
+CSS 预编译 : Scss 
 
 HTTP 工具 : Axios
 
