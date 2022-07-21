@@ -98,6 +98,7 @@
       @canplay="ready"
       @error="error"
       @timeupdate="updateTime"
+      @ended="end"
     ></audio>
   </div>
 </template>
@@ -114,6 +115,7 @@ import ProgressBar from './progress-bar.vue'
 import Scroll from '@/components/base/scroll/scroll.vue'
 import MiniPlayer from './mini-player.vue'
 import { formatTime } from '@/assets/js/util'
+import { PLAY_MODE } from '@/assets/js/constant'
 
 export default {
   // 首先要获取 currentSong, fullScreen 数据以正确渲染
@@ -137,6 +139,7 @@ export default {
     const currentSong = computed(() => store.getters.currentSong)
     const playing = computed(() => store.state.playing)
     const currentIndex = computed(() => store.state.currentIndex)
+    const playMode = computed(() => store.state.playMode)
 
     // hooks
     const { modeIcon, changeMode } = useMode()
@@ -171,6 +174,11 @@ export default {
       return playing.value ? 'icon-pause' : 'icon-play'
     })
 
+    /**
+     * @description: 播放时间和视频总时长的比例即为播放进度
+     * @param {*} currentTime audio的属性，当前播放时间
+     * @param {*} duration audio的属性，当前音频总时长
+     */
     const progress = computed(() => {
       return currentTime.value / currentSong.value.duration
     })
@@ -266,6 +274,7 @@ export default {
       const audioEl = audioRef.value
       audioEl.currentTime = 0
       audioEl.play()
+      store.commit('setPlayingstate', true)
     }
 
     function ready() {
@@ -281,6 +290,9 @@ export default {
       songReady.value = true
     }
 
+    /**
+     * @description: audio原生事件，用于获取实时的currentTime
+     */
     function updateTime(e) {
       if (!progressChanging) {
         currentTime.value = e.target.currentTime
@@ -295,15 +307,27 @@ export default {
       stopLyric()
     }
 
+    /**
+     * @description: 将拖拽进度同步到 audio 中，并进行优化：如果是暂停播放状态下播放则让它继续播放
+     * @param {*} progress 拖拽后的进度
+     */
     function onProgressChanged(progress) {
       progressChanging = false
       audioRef.value.currentTime = currentTime.value =
         currentSong.value.duration * progress
-      // 拖动完成时如果是暂停播放状态，则继续播放
       if (!playing.value) {
         store.commit('setPlayingState', true)
       }
       playLyric()
+    }
+
+    function end() {
+      currentTime.value = 0
+      if (playMode.value === PLAY_MODE.loop) {
+        loop()
+      } else {
+        next()
+      }
     }
 
     return {
@@ -327,6 +351,7 @@ export default {
       formatTime,
       onProgressChanging,
       onProgressChanged,
+      end,
       // mode
       modeIcon,
       changeMode,

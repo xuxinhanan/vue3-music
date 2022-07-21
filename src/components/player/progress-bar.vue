@@ -50,7 +50,6 @@ export default {
   },
   methods: {
     onTouchStart(e) {
-      // 横坐标
       this.touch.x1 = e.touches[0].pageX
       this.touch.beginWidth = this.$refs.progress.clientWidth
     },

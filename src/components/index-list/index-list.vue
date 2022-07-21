@@ -153,6 +153,7 @@ export default {
     text-align: center;
     background: $color-background-d;
     font-family: Helvetica;
+    scroll-behavior: smooth;
     .item {
       padding: 3px;
       line-height: 1;

@@ -20,12 +20,11 @@
 ## 配置参数说明
 
 + **chunks**：表示从什么类型的 chunks 里面提取代码。有三个字符串值 initial、async、all。
-
   +  **aysnc**，是默认值，表示只从动态加载的 chunks 里提取代码。
-
+  
   + **initial**，表示只从入口 chunks 里提取代码。
   + **all**，表示同时从异步 chunks 和 入口 chunks 里提取代码。
-
+  
 + **minChunks**：默认值是1，表示拆分前至少被多少个 chunks 引用的模块才会被单独分包。
 
 + **maxAsyncRequests**：异步加载时的最大并行请求数。默认值为30。本质上是在限制最终产生的分包数量。
@@ -222,13 +221,13 @@ module.exports = {
 };
 ```
 
-+ 分包结果：
++  `webpack-bundle-analyzer` 工具中查看分包结果如下：
 
 ![image-20220718144327084](./image/6.png)
 
 ![image-20220718144334161](./image/7.png)
 
-
+可见，echarts库被单独分包，并且首页是用不到 echarts 的，因此，有效提高了首屏加载速度。
 
 
 

@@ -64,7 +64,7 @@ Git Hook 工具 : husky + lint-staged
 
 # 三、开发文档
 
-[主题替换方案](./docx/主题替换.md)
+[主题替换方案](./docx/主题替换方案.md)
 
 [多组件联动](./docx/多组件联动.md)
 
@@ -86,7 +86,7 @@ Git Hook 工具 : husky + lint-staged
 
   + ✅开启webpack5新增功能——持久化缓存
 
-  + ✅全局引入sass变量
+  + ✅全局引入scss变量
 
   + ✅添加打包分析
 
@@ -104,8 +104,11 @@ Git Hook 工具 : husky + lint-staged
   
   + ✅图片懒加载
   
-    
+  + ✅点击区域优化 -- 伪元素扩大点击区域
   
+  + ✅ 动画优化 -- transform代替方位值如top
+  
+    
   
 
 
@@ -128,7 +131,13 @@ Git Hook 工具 : husky + lint-staged
   
 + 歌手列表
   + ✅ 顶部固定标题+吸顶合并效果
-  + ✅ shortcut
+  
+  + ✅ shortcut快速导航
+  
+    :blush: 点击跳转到相应歌手分组
+  
+    :blush: 拖拽到相应歌手分组
+  
   + ✅ 歌手跳转
   
 + 排行榜
@@ -150,8 +159,24 @@ Git Hook 工具 : husky + lint-staged
     :blush: 删除某一项搜索历史
     
     :blush: 一键清空搜索历史
+  
++ 播放器
 
-​	
+  + ✅ 播放/暂停
+
+  + ✅ 音频播放时长显示
+
+  + ✅ 进度条 
+
+    :blush: 播放进度显示
+
+    :blush: 进度条拖拽
+
+    :blush: 进度条点击跳转
+
+  + ✅ 音频切换 - 上一条/下一条
+  
+  + ✅ 歌曲收藏
 
  .....
 
