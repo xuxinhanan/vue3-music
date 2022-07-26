@@ -1,4 +1,4 @@
-import { get } from './base'
+import { get, get1 } from './base'
 
 export function getHotKeys() {
   return get('/api/getHotKeys')

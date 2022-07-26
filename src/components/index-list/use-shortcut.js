@@ -14,36 +14,37 @@ export default function useShortcut(props, groupRef) {
 
   const touch = {}
 
+  /**
+   * @description:点击了哪个dom(li)哪个dom就会生成事件，因此在事件处理程序中只需获取到相应的事件对象，并通过其上预设的自定义属性拿到这个li的索引，进而歌手列表滚动到相应位置即可
+   * @param {*} e
+   */
   function onShortcutTouchStart(e) {
-    // 通过 e.target.dataset.index 拿到当前 touch 位置对应的 li 元素的在整个列表 DOM 中的下标索引
     const anchorIndex = Number(e.target.dataset.index)
-    // 屏幕中的第一个触点在页面上的位置
     touch.y1 = e.touches[0].pageY
-    //
     touch.anchorIndex = anchorIndex
-    // 歌手列表滚动到触点所对应的区域
     scrollTo(anchorIndex)
   }
 
+  /**
+   * @description: 根据拖拽前和拖拽后的坐标计算出需要滚动的位置
+   */
   function onShortcutTouchMove(e) {
-    // 屏幕中的第一个触点在页面上的位置
     touch.y2 = e.touches[0].pageY
-    // 估算出拖拽了多少个 li 的身位
     const delta = ((touch.y2 - touch.y1) / ANCHOR_HEIGHT) | 0
-    // 然后歌手列表就可以相应定位到对应的位置
     const anchorIndex = touch.anchorIndex + delta
     scrollTo(anchorIndex)
   }
 
+  /**
+   * @description: 调用 BScroll 实例里面的 scrollToElement 方法进行定向滚动
+   */
   function scrollTo(index) {
     if (isNaN(index)) {
       return
     }
     index = Math.max(0, Math.min(shortcutList.value.length - 1, index))
     const targetEl = groupRef.value.children[index]
-    // 通过 scroll 组件拿到 better-scroll 实例
     const scroll = scrollRef.value.scroll
-    // 接着就可以调用实例里面的 scrollToElement 方法滚动到目标位置
     scroll.scrollToElement(targetEl, 0)
   }
 

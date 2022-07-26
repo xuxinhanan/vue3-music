@@ -7,7 +7,8 @@
 </template>
 
 <script>
-import { debounce } from 'throttle-debounce'
+// import { debounce } from 'throttle-debounce'
+import { debounce } from '@/assets/js/util'
 
 export default {
   name: 'search-input',
@@ -25,9 +26,10 @@ export default {
   },
   watch: {
     query: {
-      handler: debounce(300, function (newQuery) {
+      handler: debounce(function (newQuery) {
+        console.log(newQuery)
         this.$emit('update:modelValue', newQuery.trim())
-      })
+      }, 300)
     },
     modelValue(newVal) {
       this.query = newVal

@@ -64,15 +64,14 @@ Git Hook 工具 : husky + lint-staged
 
 # 三、开发文档
 
-[主题替换方案](./docx/主题替换方案.md)
-
-[多组件联动](./docx/多组件联动.md)
-
-[splitChunks在项目中的实践](./docx/splitChunks在项目中的实践.md)
-
-[添加防抖时踩的坑](./docx/添加防抖时踩的坑.md)
-
-[滚动标题+吸顶合并方案](./docx/滚动标题+吸顶合并方案.md)
++ [主题替换方案](./docx/主题替换方案.md)
++ [移动端拖拽方案](./docx/移动端拖拽实现方案.md)
++ [音频播放器方案](./docx/音频播放器方案.md)
++ [滚动标题+吸顶合并方案](./docx/滚动标题+吸顶合并方案.md)
++ [多组件联动](./docx/多组件联动.md)
++ [splitChunks在项目中的实践](./docx/splitChunks在项目中的实践.md)
++ [添加防抖时踩的坑](./docx/添加防抖时踩的坑.md)
++ [伪元素扩大点击区域优化](./docx/伪元素扩大点击区域优化.md)
 
 
 
@@ -108,6 +107,8 @@ Git Hook 工具 : husky + lint-staged
   
   + ✅ 动画优化 -- transform代替方位值如top
   
+  + ✅ shortcut实现中采用事件委托来统一管理事件
+  
     
   
 
@@ -134,9 +135,9 @@ Git Hook 工具 : husky + lint-staged
   
   + ✅ shortcut快速导航
   
-    :blush: 点击跳转到相应歌手分组
+    :blush: 点击导航
   
-    :blush: 拖拽到相应歌手分组
+    :blush: 拖拽导航
   
   + ✅ 歌手跳转
   
@@ -154,6 +155,8 @@ Git Hook 工具 : husky + lint-staged
     
     :blush: 搜索结果点击跳转播放页
     
+    :blush: 下拉刷新
+    
   + ✅ 搜索历史
     
     :blush: 删除某一项搜索历史
@@ -170,7 +173,7 @@ Git Hook 工具 : husky + lint-staged
 
     :blush: 播放进度显示
 
-    :blush: 进度条拖拽
+    :blush: 拖拽进度条
 
     :blush: 进度条点击跳转
 

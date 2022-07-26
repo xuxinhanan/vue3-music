@@ -21,6 +21,7 @@
         {{ fixedTitle }}
       </div>
     </div>
+    <!-- 在很多情况下，触摸事件和鼠标事件会一起触发。而本项目为移动端项目，只需使用触摸事件，于是通过阻止默认行为来取消鼠标事件。并且需要阻止事件冒泡，better-scroll也是基于这些事件进行的。-->
     <div
       class="shortcut"
       @touchstart.stop.prevent="onShortcutTouchStart"
