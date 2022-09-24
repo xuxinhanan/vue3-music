@@ -21,6 +21,7 @@ export default function useCd() {
   function syncTransform(wrapper, inner) {
     const wrapperTransform = getComputedStyle(wrapper).transform
     const innerTransform = getComputedStyle(inner).transform
+    // 因为内层旋转角度是相对于外层而言的，在非首次旋转的情况，需要考虑外层的旋转角度
     wrapper.style.transform =
       wrapperTransform === 'none'
         ? innerTransform

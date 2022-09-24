@@ -72,6 +72,8 @@ Git Hook 工具 : husky + lint-staged
 + [splitChunks在项目中的实践](./docx/splitChunks在项目中的实践.md)
 + [添加防抖时踩的坑](./docx/添加防抖时踩的坑.md)
 + [伪元素扩大点击区域优化](./docx/伪元素扩大点击区域优化.md)
++ [动效优化](./docx/动效优化.md)
++ [自定义指令](./docx/自定义指令.md)
 
 
 
@@ -108,6 +110,8 @@ Git Hook 工具 : husky + lint-staged
   + ✅ 动画优化 -- transform代替方位值如top
   
   + ✅ shortcut实现中采用事件委托来统一管理事件
+  
+  + ✅ 编写自定义指令复用代码
   
     
   

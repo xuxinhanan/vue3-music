@@ -1,14 +1,18 @@
+/**
+ * @description: 遍历数组，每次取[i, n-1]闭区间的一个随机数nums[rand]，交换nums[i]和nums[rand]即可
+ */
 export function shuffle(source) {
   const arr = source.slice()
-  for (let i = 0; i < arr.length; i++) {
-    const j = getRandomInt(i)
+  let n = arr.length
+  for (let i = 0; i < n; i++) {
+    const j = getRandomInt(i, n - 1)
     swap(arr, i, j)
   }
   return arr
 }
 
-function getRandomInt(max) {
-  return Math.floor(Math.random() * (max + 1))
+function getRandomInt(n, m) {
+  return Math.floor(Math.random() * (m - n + 1)) + n
 }
 
 function swap(arr, i, j) {

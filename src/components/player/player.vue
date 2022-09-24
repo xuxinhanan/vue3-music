@@ -55,7 +55,9 @@
           <span class="dot" :class="{ active: currentShow === 'cd' }"></span>
           <span class="dot" :class="{ active: currentShow === 'lyric' }"></span>
         </div>
+        <!-- 进度条 -->
         <div class="progress-wrapper">
+          <!-- 文本框 -->
           <span class="time time-l">{{ formatTime(currentTime) }}</span>
           <div class="progress-bar-wrapper">
             <progress-bar
@@ -65,10 +67,12 @@
               @progress-changed="onProgressChanged"
             ></progress-bar>
           </div>
+          <!-- 文本框 -->
           <span class="time time-r">{{
             formatTime(currentSong.duration)
           }}</span>
         </div>
+        <!-- 控制栏 -->
         <div class="operators">
           <div class="icon i-left">
             <i @click="changeMode" :class="modeIcon"></i>

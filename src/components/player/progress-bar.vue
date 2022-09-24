@@ -1,7 +1,10 @@
 <template>
   <div class="progress-bar" @click="onClick">
+    <!-- 进度条背景 -->
     <div class="bar-inner">
+      <!-- 进度条 -->
       <div class="progress" ref="progress" :style="progressStyle"></div>
+      <!-- 按钮 -->
       <div
         class="progress-btn-wrapper"
         :style="btnStyle"

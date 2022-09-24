@@ -32,6 +32,7 @@ export default function useLyric({ songReady, currentTime }) {
       return
     }
 
+    // 歌词跳到下一行时会触发 handleLyric 回调
     currentLyric.value = new Lyric(lyric, handleLyric)
     const hasLyric = currentLyric.value.lines.length
     if (hasLyric) {

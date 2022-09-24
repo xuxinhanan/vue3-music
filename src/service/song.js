@@ -25,10 +25,10 @@ export function processSongs(songs) {
 const lyricMap = {}
 
 export function getLyric(song) {
-  // 判断是否有缓存歌词
   if (song.lyric) {
     return Promise.resolve(song.lyric)
   }
+  // 对歌词数据进行缓存，下次使用时就不必再发送 http 请求，优化性能
   const mid = song.mid
   const lyric = lyricMap[mid]
   if (lyric) {

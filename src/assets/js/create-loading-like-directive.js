@@ -13,10 +13,12 @@ export default function createLoadingLikeDirective(Comp) {
   return {
     mounted(el, binding) {
       // 根据传入的组件创建组件实例
+
       const app = createApp(Comp)
-      // 根据组件实例创建相应的 DOM 元素
+      // 将组件挂载到一个 DOM 上
       const instance = app.mount(document.createElement('div'))
       const name = Comp.name
+
       if (!el[name]) {
         el[name] = {}
       }

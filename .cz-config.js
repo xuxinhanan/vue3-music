@@ -12,7 +12,7 @@ module.exports = {
     },
     {
       value: ':pencil: docs',
-      name: '📝 修改文档(仅文档更改)'
+      name: '📝 修改文档'
     },
     {
       value: ':lipstick: ui',
